@@ -32,15 +32,15 @@
 					<p>Export a runnable .jar file, <strong>logistic.jar</strong>, and use Python os libary executing operating system commands.</p>
 					<div class="pseudo"> 
 						<p>
-							<a class=shebang >#! python2.7</a>
-							<br><a class=shebang>#!-*- coding: utf-8 -*-</a>
+							<span class=shebang >#! python2.7</span>
+							<br><span class=shebang>#!-*- coding: utf-8 -*-</span>
 							<br>
-							<br><a class=import>import</a> os
+							<br><span class=import>import</span> os
 							<br>
-							<br>src = <a class=string>"data_set.csv"</a>
-							<br>dst = <a class=string>"result.txt"</a>
+							<br>src = <span class=string>"data_set.csv"</span>
+							<br>dst = <span class=string>"result.txt"</span>
 							<br>
-							<br>os.system(<a class=string>"java -jar logistic.jar src dst"</a>)
+							<br>os.system(<span class=string>"java -jar logistic.jar src dst"</span>)
 							<br>
 							<br>
 						</p>
@@ -50,10 +50,10 @@
 					<div class="pseudo">
 						<p>
 							...
-							<br><a class=import>with</a> <a class=stlib>open</a>(dst) <a class=import>as</a> f: 
+							<br><span class=import>with</span> <span class=stlib>open</span>(dst) <span class=import>as</span> f: 
 							<br>&nbsp; &nbsp; string = f.read()
 							<br>
-							<br>w_java = [<a class=stlib>float</a>(i) <a class=import>for</a> i <a class=import>in</a> string.strip().split(<a class=string>"</a><a class=import>\t</a><a class=string>"</a>)]
+							<br>w_java = [<span class=stlib>float</span>(i) <span class=import>for</span> i <span class=import>in</span> string.strip().split(<span class=string>"</span><span class=import>\t</span><span class=string>"</span>)]
 							<br>
 							<br>
 						</p>
@@ -108,22 +108,22 @@
 					<div class="pseudo">
 						<p>
 							...
-							<br><a class=import>import</a> pandas <a class=import>as</a> pd
-							<br><a class=import>from</a> sklearn.linear_model <a class=import>import</a> LogisticRegression
-							<br><a class=shebang># import data</a>
+							<br><span class=import>import</span> pandas <span class=import>as</span> pd
+							<br><span class=import>from</span> sklearn.linear_model <span class=import>import</span> LogisticRegression
+							<br><span class=shebang># import data</span>
 							<br>data_frame = pd.read_csv(src)
 							<br>
-							<br><a class=shebang># get data label</a>
+							<br><span class=shebang># get data label</span>
 							<br>col = data_frame.columns.values
 							<br>
-							<br><a class=shebang># outcome y</a>
-							<br>y = data_frame[[<a class=string>"admit"</a>]]
+							<br><span class=shebang># outcome y</span>
+							<br>y = data_frame[[<span class=string>"admit"</span>]]
 							<br>
-							<br><a class=shebang># variables x</a>							
-							<br>x = data_frame.loc[:<a class=import>,</a> col[col != <a class=string>"admit"</a>]]
+							<br><span class=shebang># variables x</span>							
+							<br>x = data_frame.loc[:<span class=import>,</span> col[col != <span class=string>"admit"</span>]]
 							<br>
-							<br>lr = LogisticRegression()&nbsp; <a class=shebang># create object, such as "Obj lr = new Obj()" in Java</a>	
-							<br>lr.fit(x<a class=import>,</a> y)&nbsp; <a class=shebang># use method fit() with input arguments x, y</a>
+							<br>lr = LogisticRegression()&nbsp; <span class=shebang># create object, such as "Obj lr = new Obj()" in Java</span>	
+							<br>lr.fit(x<span class=import>,</span> y)&nbsp; <span class=shebang># use method fit() with input arguments x, y</span>
 							<br>
 							<br>
 						</p>
@@ -133,9 +133,9 @@
 					<div class="pseudo">
 						<p>
 							...
-							<br><a class=shebang># lr.intercept_: array, shape (1,) or (n_classes,)</a>
-							<br><a class=shebang># lr.coef_ : array, shape (1, n_features) or (n_classes, n_features)</a> 
-							<br>w_python = [lr.intercept_[<a class=number>0</a>]] + [w <a class=import>for</a> w <a class=import>in</a> lr.coef_[<a class=number>0</a>]]
+							<br><span class=shebang># lr.intercept_: array, shape (1,) or (n_classes,)</span>
+							<br><span class=shebang># lr.coef_ : array, shape (1, n_features) or (n_classes, n_features)</span> 
+							<br>w_python = [lr.intercept_[<span class=number>0</span>]] + [w <span class=import>for</span> w <span class=import>in</span> lr.coef_[<span class=number>0</span>]]
 							<br>
 							<br>
 						</p>
@@ -144,49 +144,49 @@
 					<p>Orginizing our code...</p>
 					<div class="pseudo"> 
 						<p>
-							<a class=shebang >#! python2.7</a>
-							<br><a class=shebang>#!-*- coding: utf-8 -*-</a>
+							<span class=shebang >#! python2.7</span>
+							<br><span class=shebang>#!-*- coding: utf-8 -*-</span>
 							<br>
-							<br><a class=import>import</a> os
-							<br><a class=import>import</a> pandas <a class=import>as</a> pd
-							<br><a class=import>from</a> sklearn.linear_model <a class=import>import</a> LogisticRegression
+							<br><span class=import>import</span> os
+							<br><span class=import>import</span> pandas <span class=import>as</span> pd
+							<br><span class=import>from</span> sklearn.linear_model <span class=import>import</span> LogisticRegression
 							<br>
 							<br>
-							<br><a class=import>def</a> <a class=func>compared</a>(src<a class=import>,</a> dst<a class=import>,</a> x<a class=import>,</a> y<a class=import>,</a> lamb<a class=import>,</a> lim<a class=import>,</a> fit_intercept<a class=import>,</a> tol):
-							<br>&nbsp; &nbsp; args = <a class=string>"%s %s %s %d %s %s"</a> % (&nbsp; <a class=shebang># set arguments</a>
-							<br>&nbsp; &nbsp; &nbsp; &nbsp; src<a class=import>,</a> dst<a class=import>,</a> <a class=stlib>str</a>(lamp)<a class=import>,</a> lim<a class=import>,</a> <a class=stlib>str</a>(fit_intercept).lower()<a class=import>,</a> <a class=stlib>tol</a>)
+							<br><span class=import>def</span> <span class=func>compared</span>(src<span class=import>,</span> dst<span class=import>,</span> x<span class=import>,</span> y<span class=import>,</span> lamb<span class=import>,</span> lim<span class=import>,</span> fit_intercept<span class=import>,</span> tol):
+							<br>&nbsp; &nbsp; args = <span class=string>"%s %s %s %d %s %s"</span> % (&nbsp; <span class=shebang># set arguments</span>
+							<br>&nbsp; &nbsp; &nbsp; &nbsp; src<span class=import>,</span> dst<span class=import>,</span> <span class=stlib>str</span>(lamb)<span class=import>,</span> lim<span class=import>,</span> <span class=stlib>str</span>(fit_intercept).lower()<span class=import>,</span> <span class=stlib>tol</span>)
 
-							<br>&nbsp; &nbsp; os.system(<a class=string>"java -jar logistic.jar %s"</a> % (args))&nbsp; <a class=shebang># call jar file</a>
-							<br>&nbsp; &nbsp; <a class=import>with</a> <a class=stlib>open</a>(dst) <a class=import>as</a> f:&nbsp; <a class=shebang># load result</a>
+							<br>&nbsp; &nbsp; os.system(<span class=string>"java -jar logistic.jar %s"</span> % (args))&nbsp; <span class=shebang># call jar file</span>
+							<br>&nbsp; &nbsp; <span class=import>with</span> <span class=stlib>open</span>(dst) <span class=import>as</span> f:&nbsp; <span class=shebang># load result</span>
 							<br>&nbsp; &nbsp; &nbsp; &nbsp; string = f.read()
 							<br>
 							<br>&nbsp; &nbsp; lr = LogisticRegression(
-							<br>&nbsp; &nbsp; &nbsp; &nbsp; <a class=karg>C</a>=1/lamb<a class=import>,</a> <a class=karg>iter_lim</a>=lim<a class=import>,</a> <a class=karg>fit_intercept</a>=fit_intercept<a class=import>,</a> <a class=karg>tol</a>=tol)	
-							<br>&nbsp; &nbsp; lr.fit(x<a class=import>,</a> y)&nbsp; <a class=shebang># use method fit() with input arguments x, y</a>
+							<br>&nbsp; &nbsp; &nbsp; &nbsp; <span class=karg>C</span>=1/lamb<span class=import>,</span> <span class=karg>iter_lim</span>=lim<span class=import>,</span> <span class=karg>fit_intercept</span>=fit_intercept<span class=import>,</span> <span class=karg>tol</span>=tol)	
+							<br>&nbsp; &nbsp; lr.fit(x<span class=import>,</span> y)&nbsp; <span class=shebang># use method fit() with input arguments x, y</span>
 							<br>
-							<br>&nbsp; &nbsp; w_java = [<a class=stlib>float</a>(i) <a class=import>for</a> i <a class=import>in</a> string.strip().split(<a class=string>"</a><a class=import>\t</a><a class=string>"</a>)]
-							<br>&nbsp; &nbsp; w_python = [lr.intercept_[<a class=number>0</a>]] + [w <a class=import>for</a> w <a class=import>in</a> lr.coef_[<a class=number>0</a>]]
+							<br>&nbsp; &nbsp; w_java = [<span class=stlib>float</span>(i) <span class=import>for</span> i <span class=import>in</span> string.strip().split(<span class=string>"</span><span class=import>\t</span><span class=string>"</span>)]
+							<br>&nbsp; &nbsp; w_python = [lr.intercept_[<span class=number>0</span>]] + [w <span class=import>for</span> w <span class=import>in</span> lr.coef_[<span class=number>0</span>]]
 							<br>
-							<br>&nbsp; &nbsp; <a class=import>return</a> w_java<a class=import>,</a> w_python
+							<br>&nbsp; &nbsp; <span class=import>return</span> w_java<span class=import>,</span> w_python
 							<br>
 							<br>
-							<br>src = <a class=string>"data_set.csv"</a>
-							<br>dst = <a class=string>"result.txt"</a>
+							<br>src = <span class=string>"data_set.csv"</span>
+							<br>dst = <span class=string>"result.txt"</span>
 							<br>
-							<br>data_frame = pd.read_csv(src)&nbsp; <a class=shebang># import data</a>
-							<br>col = data_frame.columns.values&nbsp; <a class=shebang># get data label</a>
-							<br>y = data_frame[[<a class=string>"admit"</a>]]&nbsp; <a class=shebang># outcome y</a>	
-							<br>x = data_frame.loc[:<a class=import>,</a> col[col != <a class=string>"admit"</a>]]&nbsp; <a class=shebang># variables x</a>	
+							<br>data_frame = pd.read_csv(src)&nbsp; <span class=shebang># import data</span>
+							<br>col = data_frame.columns.values&nbsp; <span class=shebang># get data label</span>
+							<br>y = data_frame[[<span class=string>"admit"</span>]]&nbsp; <span class=shebang># outcome y</span>	
+							<br>x = data_frame.loc[:<span class=import>,</span> col[col != <span class=string>"admit"</span>]]&nbsp; <span class=shebang># variables x</span>	
 							<br>
-							<br>lamb = <a class=number>1.0</a>
-							<br>lim = <a class=number>20</a>
-							<br>fit_intercept = <a class=stlib>True</a>
-							<br>tol =  <a class=number>1e-8</a>
+							<br>lamb = <span class=number>1.0</span>
+							<br>lim = <span class=number>20</span>
+							<br>fit_intercept = <span class=stlib>True</span>
+							<br>tol =  <span class=number>1e-8</span>
 							<br>
 							<br>weight = []
-							<br><a class=import>for</a> i <a class=import>in</a> <a class=stlib>xrange</a>(lim):
-							<br>&nbsp; &nbsp; w_j<a class=import>,</a> w_p = compared(src<a class=import>,</a> dst<a class=import>,</a> lamb<a class=import>,</a> lim<a class=import>,</a> fit_intercept<a class=import>,</a> tol)
-							<br>&nbsp; &nbsp; weight += [{<a class=string>"java"</a>: w_j<a class=import>,</a> <a class=string>"python"</a>: w_p}]
+							<br><span class=import>for</span> i <span class=import>in</span> <span class=stlib>xrange</span>(lim):
+							<br>&nbsp; &nbsp; w_j<span class=import>,</span> w_p = compared(src<span class=import>,</span> dst<span class=import>,</span> lamb<span class=import>,</span> lim<span class=import>,</span> fit_intercept<span class=import>,</span> tol)
+							<br>&nbsp; &nbsp; weight += [{<span class=string>"java"</span>: w_j<span class=import>,</span> <span class=string>"python"</span>: w_p}]
 							<br>
 							<br>
 						</p>
