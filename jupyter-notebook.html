@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+<title>Side Project</title>
+<meta name="keywords" content="" />
+<meta name="description" content="" />
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<link href="css/style.css" rel="stylesheet" type="text/css" media="screen" />
+<script type="text/x-mathjax-config">
+	MathJax.Hub.Config({
+	  tex2jax: {
+		inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+		processEscapes: true
+	  }
+	});
+  </script>
+  
+  <script type="text/javascript"
+	  src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+  </script>
+</head>
+<body>
+
+<!-- start header -->
+<div id="header">
+	<h1>Logistic Regression</h1>
+</div>
+<!-- end header -->
+<!-- start page -->
+<div id="page">
+	<!-- start content -->
+	<div id="content">
+		<div class="post">
+			<h2 id=sigm class="title">Sigmoid Function</h2>
+			<p class="byline"><small>Publish on October 22th, 2003 by <a target="_blank" rel="noopener noreferrer" href="https://pdfs.semanticscholar.org/69da/9d1059d91c3536067330085f6a2233592a39.pdf">Minka</a></small></p>
+			<div class="entry">
+				<p>
+					&nbsp; &nbsp; The logistic regression model is :
+					\begin{align}
+						p(y=\pm1|\mathbf{x}, \mathbf{w}) & = \frac{1}{1+e^{-y\mathbf{w}^T\mathbf{x}}} 
+					\end{align}
+				</p>
+			</div>
+		</div>
+
+		<div class="post">
+			<h2 id=prior class="title">Liklihood & Prior Function</h2>
+			<p class="byline"><small>Publish on October 22th, 2003 by <a target="_blank" rel="noopener noreferrer" href="https://pdfs.semanticscholar.org/69da/9d1059d91c3536067330085f6a2233592a39.pdf">Minka</a></small></p>
+			<div class="entry">
+				<p>
+					&nbsp; &nbsp; A common prior to use with MAP is :
+					\begin{align}
+						p(\mathbf{w}) & \sim \mathcal{N}(0, \lambda^{-1}\mathbf{I}) 
+					\end{align}
+					<br>where $\lambda$ is regularization strength
+				</p>
+
+				<p>
+					&nbsp; &nbsp; Given a data set $(\mathbf{X}, \mathbf{y}) = [(\mathbf{x}_1, y_1), (\mathbf{x}_2, y_2), ..., (\mathbf{x}_n, y_n)]$, we want to find the parameter vector $\mathbf{w}$ which maximizes :
+					\begin{align}
+						l(\mathbf{w}) = -\sum^{n}_{i=1}log(1+e^{-y_i\mathbf{w}^T\mathbf{x}_i}) - \frac{\lambda}{2}{\mathbf{w}^T\mathbf{w}}
+					\end{align}
+				</p>
+
+				<p>
+					&nbsp; &nbsp; The gradient of the objective, <strong>first-order partial derivatives</strong> of the posterior function :
+					\begin{align}
+						\mathbf{g} = \triangledown_{\mathbf{w}}l(\mathbf{w}) = \sum^{n}_{i=1}(1-\frac{1}{1+e^{-y_i\mathbf{w}^T\mathbf{x}_i}})y_i\mathbf{x}_i - \lambda\mathbf{w}
+					\end{align}
+				</p>	
+						
+				<p>
+					&nbsp; &nbsp; The Hessian matrix, a square matrix of <strong>second-order partial derivatives</strong> of the posterior function :
+					\begin{align}
+						\mathbf{H} = \frac{d^2l({\mathbf{w}})}{d{\mathbf{w}}d{\mathbf{w}}^T} = -\sum^{n}_{i=1}(\frac{1}{1+e^{-{\mathbf{w}}^T{\mathbf{x}}_i}})(1-\frac{1}{1+e^{-{\mathbf{w}}^T{\mathbf{x}}_i}}){\mathbf{x}}_i{\mathbf{x}}^T_i - \lambda\mathbf{I}
+					\end{align}
+					<br>which in matrix form can be written :
+					\begin{align}
+						\mathbf{H} = -\mathbf{XAX}^{T} - \lambda\mathbf{I}
+					\end{align}
+					<br>where $\mathbf{A}$ is a diagonal matrix :
+					\begin{align}
+						a_{ii} = \frac{1}{1+e^{{\mathbf{w}}^T{\mathbf{x}}_i}}(1-\frac{1}{1+e^{{\mathbf{w}}^T{\mathbf{x}}_i}})
+					\end{align}
+				</p>
+			</div>
+		</div>
+
+		<div class="post">
+			<h2 id=newton class="title">Newton Step</h2>
+			<p class="byline"><small>Publish on October 22th, 2003 by <a target="_blank" rel="noopener noreferrer" href="https://pdfs.semanticscholar.org/69da/9d1059d91c3536067330085f6a2233592a39.pdf">Minka</a></small></p>
+			<div class="entry">
+				<p>
+					Newton step is
+					\begin{align}
+						\mathbf{w}_{new} &= \mathbf{w}_{old} + (\mathbf{X}\mathbf{A}\mathbf{X}^T + \lambda\mathbf{I}^{-1})(\sum^{n}_{i=1}(1-\frac{1}{1+e^{-y_i\mathbf{w}^T\mathbf{x}_i}})y_i\mathbf{x}_i - \lambda\mathbf{w})\\
+						&=(\mathbf{X}\mathbf{A}\mathbf{X}^T + \lambda\mathbf{I}^{-1})\mathbf{X}\mathbf{A}(\mathbf{X}^T\mathbf{w}_{old}+[\frac{(1-\frac{1}{1+e^{-y_i\mathbf{w}^T\mathbf{x}_i}})y_i}{a_{ii}}])\\
+						\text{if we define} \\
+						&z_i = \mathbf{x}_i^T\mathbf{w}_{old} + \frac{(1-\frac{1}{1+e^{-y_i\mathbf{w}^T\mathbf{x}_i}})y_i}{a_{ii}}\\
+						\\
+						\Rightarrow \mathbf{w}_{new} &=(\mathbf{X}\mathbf{A}\mathbf{X}^T + \lambda\mathbf{I}^{-1})\mathbf{X}\mathbf{A}\mathbf{z}
+					\end{align}
+
+			</div>
+		</div>
+		<!-- <iframe id=jupyter src="algorithm_doc.html"></iframe> -->
+	</div>
+	<!-- end content -->
+	<!-- start sidebar -->
+	<div id="sidebar">
+		<ul>
+			<li>
+				<h2>Categories</h2>
+				<ul>
+					<li><a href="introdution.html">What's Logistic Regression</a></li>
+					<li><a href="result.html">Java Result versus Scikit-learn</a></li>
+					<li><a href="#" data-toggle="collapse" data-target="#jupyter">Algorithm for Logistic Regression</a></li>
+					<div id=jupyter class=collapse>
+						<li><a href="#sigm">&nbsp; &nbsp; &nbsp; &nbsp; Sigmoid Function</a></li>
+						<li><a href="#prior">&nbsp; &nbsp; &nbsp; &nbsp; Likelihood & Prior Function</a></li>
+						<li><a href="#newton">&nbsp; &nbsp; &nbsp; &nbsp; Newton Step</a></li>
+					</div>
+					<li><a href="class_diagram_current.html">Class Diagram</a></li>
+					<li><a href="technique.html">Technique for Building</a></li>
+				</ul>
+			</li>
+			<li>
+				<h2>Appendix</h2>
+				<ul>
+					<li><a href="logistic.html">Logistic Regression</a></li>
+					<li><a href="map.html">Maximum-a-Posteriori</a></li>
+					<li><a href="newton.html">Newton's Method</a></li>
+					<li><a href="bernoulli.html">Bernoulli Distribution</a></li>
+				</ul>
+			</li>
+		</ul>
+	</div>
+	<!-- end sidebar -->
+</div>
+
+<!-- end page -->
+<div id="footer">
+	<p>&copy; 2018 All Rights Reserved &nbsp;&bull;&nbsp; Edit by <a target="_blank" rel="noopener noreferrer" href="http://github.com/Berchem">Berchem Lin</a>.</p>
+</div>
+</body>
+<script type="text/javascript"
+	  src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+</html>

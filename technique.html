@@ -1,0 +1,633 @@
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+<title>Side Project</title>
+<meta name="keywords" content="" />
+<meta name="description" content="" />
+<!-- import bootstrap -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<link href="css/style.css" rel="stylesheet" type="text/css" media="screen" />
+<!-- import MathJaX -->
+<script type="text/x-mathjax-config">
+	MathJax.Hub.Config({
+	  tex2jax: {
+		inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+		processEscapes: true
+	  }
+	});
+</script>
+  
+<script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+  
+</head>
+<body>
+
+<!-- start header -->
+<div id="header">
+	<h1>Logistic Regression</h1>
+</div>
+<!-- end header -->
+<!-- start page -->
+<div id="page">
+	<!-- start content -->
+	<div id="content">
+		<div class="post">
+			<h1 id="matrix" class="title">Matrix</h1>
+			<p class="byline"><small>Edited on July 10th, 2018 by <a target="_blank" rel="noopener noreferrer" href="http://github.com/Berchem">Berchem</a></small></p>
+			<div class="entry">
+				<div class="pseudo"> 
+					<div>
+						<span class=import>class</span> <span class=class_color>Matrix</span>{
+						<br>
+						<!-- add mx1 + mx1 -->
+						<br>&nbsp; &nbsp; <span class=import>static double</span>[] <a href=# data-toggle="collapse" data-target="#plus1">plus</a>(<span class=import>double</span>[] <span class=arg>A</span>, <span class=import>double</span>[] <span class=arg>B</span>) {
+						<p id=plus1 class=collapse>&nbsp; &nbsp; &nbsp; &nbsp; <span class=import>int ma</span> = <span class=arg>A</span>.<span class=number>length</span>;
+						<br>&nbsp; &nbsp; &nbsp; &nbsp; <span class=import>int mb</span> = <span class=arg>B</span>.<span class=number>length</span>;
+						<br>&nbsp; &nbsp; &nbsp; &nbsp; <span class=import>if</span> (<span class=v>ma</span> != <span class=v>mb</span>) <span class=import>throw new</span> <span class=except>RuntimeException</span>(<span class=string>"Index Error"</span>);
+						<br>&nbsp; &nbsp; &nbsp; &nbsp; <span class=import>double</span>[] <span class=import>C</span> = <span class=import>new double</span>[<span class=v>ma</span>];
+						<br>&nbsp; &nbsp; &nbsp; &nbsp; <span class=import>for</span> (<span class=import>int i</span> = 0; <span class=v>i</span> < <span class=v>ma</span>; <span class=v>i</span>++)
+						<br>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <span class=v>C</span>[<span class=v>i</span>] = <span class=arg>A</span>[<span class=v>i</span>] + <span class=arg>B</span>[<span class=v>i</span>];
+						<br>&nbsp; &nbsp; &nbsp; &nbsp; <span class=import>return</span> <span class=v>C</span>;
+						<br>&nbsp; &nbsp; }</p>
+						<br>
+						<!-- add mxn + mxn -->
+						<br>&nbsp; &nbsp; <span class=import>static double</span>[][] <a href=# data-toggle="collapse" data-target="#plus2">plus</a>(<span class=import>double</span>[][] <span class=arg>A</span>, <span class=import>double</span>[][] <span class=arg>B</span>) {
+						<p id=plus2 class=collapse>&nbsp; &nbsp; &nbsp; &nbsp; <span class=import>int ma</span> = <span class=arg>A</span>.<span class=number>length</span>;
+						<br>&nbsp; &nbsp; &nbsp; &nbsp; <span class=import>int na</span> = <span class=arg>A</span>[0].<span class=number>length</span>;
+						<br>&nbsp; &nbsp; &nbsp; &nbsp; <span class=import>int mb</span> = <span class=arg>B</span>.<span class=number>length</span>;
+						<br>&nbsp; &nbsp; &nbsp; &nbsp; <span class=import>int nb</span> = <span class=arg>B</span>[0].<span class=number>length</span>;
+						<br>&nbsp; &nbsp; &nbsp; &nbsp; <span class=import>if</span> (<span class=v>ma</span> != <span class=v>mb</span> || <span class=v>na</span> != <span class=v>nb</span>) <span class=import>throw new</span> <span class=except>RuntimeException</span>(<span class=string>"Index Error"</span>);
+						<br>&nbsp; &nbsp; &nbsp; &nbsp; <span class=import>double</span>[][] <span class=import>C</span> = <span class=import>new double</span>[<span class=v>ma</span>][<span class=v>na</span>];
+						<br>&nbsp; &nbsp; &nbsp; &nbsp; <span class=import>for</span> (<span class=import>int i</span> = 0; <span class=v>i</span> < <span class=v>ma</span>; <span class=v>i</span>++)
+						<br>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <span class=import>for</span> (<span class=import>int j</span> = 0; <span class=v>j</span> < <span class=v>na</span>; <span class=v>j</span>++)
+						<br>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <span class=v>C</span>[<span class=v>i</span>][<span class=v>j</span>] = <span class=arg>A</span>[<span class=v>i</span>][<span class=v>j</span>] + <span class=arg>B</span>[<span class=v>i</span>][<span class=v>j</span>];
+						<br>&nbsp; &nbsp; &nbsp; &nbsp; <span class=import>return</span> <span class=v>C</span>;
+						<br>&nbsp; &nbsp; }</p>
+						<br>
+						<!-- subtract mx1 + mx1 -->
+						<br>&nbsp; &nbsp; <span class=import>static double</span>[] <a href=# data-toggle="collapse" data-target="#sub">sub</a>(<span class=import>double</span>[] <span class=arg>A</span>, <span class=import>double</span>[] <span class=arg>B</span>) {
+						<p id=sub class=collapse>&nbsp; &nbsp; &nbsp; &nbsp; <span class=import>int ma</span> = <span class=arg>A</span>.<span class=number>length</span>;
+						<br>&nbsp; &nbsp; &nbsp; &nbsp; <span class=import>int mb</span> = <span class=arg>B</span>.<span class=number>length</span>;
+						<br>&nbsp; &nbsp; &nbsp; &nbsp; <span class=import>if</span> (<span class=v>ma</span> != <span class=v>mb</span>) <span class=import>throw new</span> <span class=except>RuntimeException</span>(<span class=string>"Index Error"</span>);
+						<br>&nbsp; &nbsp; &nbsp; &nbsp; <span class=import>double</span>[][] <span class=import>C</span> = <span class=import>new double</span>[<span class=v>ma</span>];
+						<br>&nbsp; &nbsp; &nbsp; &nbsp; <span class=import>for</span> (<span class=import>int i</span> = 0; <span class=v>i</span> < <span class=v>ma</span>; <span class=v>i</span>++)
+						<br>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <span class=v>C</span>[<span class=v>i</span>] = <span class=arg>A</span>[<span class=v>i</span>] - <span class=arg>B</span>[<span class=v>i</span>];
+						<br>&nbsp; &nbsp; &nbsp; &nbsp; <span class=import>return</span> <span class=v>C</span>;
+						<br>&nbsp; &nbsp; }</p>
+						<br>
+						<!-- dot mx1 * mx1 -->
+						<br>&nbsp; &nbsp; <span class=import>static double</span> <a href=# data-toggle="collapse" data-target="#dot1">dot</a>(<span class=import>double</span>[] <span class=arg>A</span>, <span class=import>double</span>[] <span class=arg>B</span>) {
+						<p id=dot1 class=collapse>&nbsp; &nbsp; &nbsp; &nbsp; <span class=import>int ma</span> = <span class=arg>A</span>.<span class=number>length</span>;
+						<br>&nbsp; &nbsp; &nbsp; &nbsp; <span class=import>int mb</span> = <span class=arg>B</span>.<span class=number>length</span>;
+						<br>&nbsp; &nbsp; &nbsp; &nbsp; <span class=import>if</span> (<span class=v>ma</span> != <span class=v>mb</span>) <span class=import>throw new</span> <span class=except>RuntimeException</span>(<span class=string>"Index Error"</span>);
+						<br>&nbsp; &nbsp; &nbsp; &nbsp; <span class=import>double C</span> = 0;
+						<br>&nbsp; &nbsp; &nbsp; &nbsp; <span class=import>for</span> (<span class=import>int i</span> = 0; <span class=v>i</span> < <span class=v>ma</span>; <span class=v>i</span>++)
+						<br>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <span class=v>C</span> += <span class=arg>A</span>[<span class=v>i</span>] * <span class=arg>B</span>[<span class=v>i</span>];
+						<br>&nbsp; &nbsp; &nbsp; &nbsp; <span class=import>return</span> <span class=v>C</span>;
+						<br>&nbsp; &nbsp; }</p>
+						<br>
+						<!-- dot mxn * nx1 -->
+						<br>&nbsp; &nbsp; <span class=import>static double</span>[] <a href=# data-toggle="collapse" data-target="#dot2">dot</a>(<span class=import>double</span>[][] <span class=arg>A</span>, <span class=import>double</span>[] <span class=arg>B</span>) {
+						<p id=dot2 class=collapse>&nbsp; &nbsp; &nbsp; &nbsp; <span class=import>int ma</span> = <span class=arg>A</span>.<span class=number>length</span>;
+						<br>&nbsp; &nbsp; &nbsp; &nbsp; <span class=import>int na</span> = <span class=arg>A</span>[0].<span class=number>length</span>;
+						<br>&nbsp; &nbsp; &nbsp; &nbsp; <span class=import>int mb</span> = <span class=arg>B</span>.<span class=number>length</span>;
+						<br>&nbsp; &nbsp; &nbsp; &nbsp; <span class=import>if</span> (<span class=v>na</span> != <span class=v>mb</span>) <span class=import>throw new</span> <span class=except>RuntimeException</span>(<span class=string>"Index Error"</span>);
+						<br>&nbsp; &nbsp; &nbsp; &nbsp; <span class=import>double</span>[][] <span class=import>C</span> = <span class=import>new double</span>[<span class=v>ma</span>];
+						<br>&nbsp; &nbsp; &nbsp; &nbsp; <span class=import>for</span> (<span class=import>int i</span> = 0; <span class=v>i</span> < <span class=v>ma</span>; <span class=v>i</span>++)
+						<br>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <span class=import>for</span> (<span class=import>int j</span> = 0; <span class=v>j</span> < <span class=v>na</span>; <span class=v>j</span>++)
+						<br>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <span class=v>C</span>[<span class=v>i</span>] += <span class=arg>A</span>[<span class=v>i</span>][<span class=v>j</span>] * <span class=arg>B</span>[<span class=v>j</span>];
+						<br>&nbsp; &nbsp; &nbsp; &nbsp; <span class=import>return</span> <span class=v>C</span>;
+						<br>&nbsp; &nbsp; }</p>
+						<br>
+						<!-- dot mxn * nxp -->
+						<br>&nbsp; &nbsp; <span class=import>static double</span>[][] <a href=# data-toggle="collapse" data-target="#dot3">dot</a>(<span class=import>double</span>[][] <span class=arg>A</span>, <span class=import>double</span>[][] <span class=arg>B</span>) {
+						<p id=dot3 class=collapse>&nbsp; &nbsp; &nbsp; &nbsp; <span class=import>int ma</span> = <span class=arg>A</span>.<span class=number>length</span>;
+						<br>&nbsp; &nbsp; &nbsp; &nbsp; <span class=import>int na</span> = <span class=arg>A</span>[0].<span class=number>length</span>;
+						<br>&nbsp; &nbsp; &nbsp; &nbsp; <span class=import>int mb</span> = <span class=arg>B</span>.<span class=number>length</span>;
+						<br>&nbsp; &nbsp; &nbsp; &nbsp; <span class=import>int nb</span> = <span class=arg>B</span>[0].<span class=number>length</span>;
+						<br>&nbsp; &nbsp; &nbsp; &nbsp; <span class=import>if</span> (<span class=v>na</span> != <span class=v>mb</span>) <span class=import>throw new</span> <span class=except>RuntimeException</span>(<span class=string>"Index Error"</span>);
+						<br>&nbsp; &nbsp; &nbsp; &nbsp; <span class=import>double</span>[][] <span class=import>C</span> = <span class=import>new double</span>[<span class=v>ma</span>][<span class=v>nb</span>];
+						<br>&nbsp; &nbsp; &nbsp; &nbsp; <span class=import>for</span> (<span class=import>int i</span> = 0; <span class=v>i</span> < <span class=v>ma</span>; <span class=v>i</span>++)
+						<br>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <span class=import>for</span> (<span class=import>int j</span> = 0; <span class=v>j</span> < <span class=v>nb</span>; <span class=v>j</span>++)
+						<br>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <span class=import>for</span> (<span class=import>int k</span> = 0; <span class=v>k</span> < <span class=v>na</span>; <span class=v>k</span>++)
+						<br>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <span class=v>C</span>[<span class=v>i</span>][<span class=v>j</span>] += <span class=arg>A</span>[<span class=v>i</span>][<span class=v>k</span>] * <span class=arg>B</span>[<span class=v>k</span>][<span class=v>j</span>];
+						<br>&nbsp; &nbsp; &nbsp; &nbsp; <span class=import>return</span> <span class=v>C</span>;
+						<br>&nbsp; &nbsp; }</p>
+						<br>
+						<!-- transpose -->
+						<br>&nbsp; &nbsp; <span class=import>static double</span>[][] <a href=# data-toggle="collapse" data-target="#transpose">transpose</a>(<span class=import>double</span>[][] <span class=arg>A</span>){
+						<p id=transpose class=collapse>&nbsp; &nbsp; &nbsp; &nbsp; <span class=import>int m</span> = <span class=arg>A</span>.<span class=number>length</span>;
+						<br>&nbsp; &nbsp; &nbsp; &nbsp; <span class=import>int n</span> = <span class=arg>A</span>[0].<span class=number>length</span>;
+						<br>&nbsp; &nbsp; &nbsp; &nbsp; <span class=import>double</span>[][] <span class=import>AT</span> = <span class=import>new double</span>[<span class=v>n</span>][<span class=v>m</span>];
+						<br>&nbsp; &nbsp; &nbsp; &nbsp; <span class=import>for</span> (<span class=import>int i</span> = 0; <span class=v>i</span> < <span class=v>m</span>; <span class=v>i</span>++)
+						<br>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <span class=import>for</span> (<span class=import>int j</span> = 0; <span class=v>j</span> < <span class=v>n</span>; <span class=v>j</span>++)
+						<br>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <span class=v>AT</span>[<span class=v>j</span>][<span class=v>i</span>] = <span class=arg>A</span>[<span class=v>i</span>][<span class=v>j</span>];
+						<br>&nbsp; &nbsp; &nbsp; &nbsp; <span class=import>return</span> <span class=v>AT</span>;
+						<br>&nbsp; &nbsp; }</p>
+						<br>
+
+						<br>&nbsp; &nbsp; <span class=import>static double</span>[][] <a href=# data-toggle="collapse" data-target="#diagflat">diagflat</a>(<span class=import>double</span>[] <span class=arg>A</span>){
+						<p id=diagflat class=collapse>&nbsp; &nbsp; &nbsp; &nbsp; <span class=import>int m</span> = <span class=arg>A</span>.<span class=number>length</span>;
+						<br>&nbsp; &nbsp; &nbsp; &nbsp; <span class=import>double</span>[][] <span class=import>DiagA</span> = <span class=import>new double</span>[<span class=v>m</span>][<span class=v>m</span>];
+						<br>&nbsp; &nbsp; &nbsp; &nbsp; <span class=import>for</span> (<span class=import>int i</span> = 0; <span class=v>i</span> < <span class=v>m</span>; <span class=v>i</span>++)
+						<br>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <span class=v>DiagA</span>[<span class=v>i</span>][<span class=v>i</span>] = <span class=arg>A</span>[<span class=v>i</span>];
+						<br>&nbsp; &nbsp; &nbsp; &nbsp; <span class=import>return</span> <span class=v>DiagA</span>;
+						<br>&nbsp; &nbsp; }</p>
+						<br>
+						<br>&nbsp; &nbsp; <span class=import>static double</span>[] <a href=# data-toggle="collapse" data-target="#element_dot">element_dot</a>(<span class=import>double</span>[] <span class=arg>A</span>, <span class=import>double</span>[] <span class=arg>B</span>) {
+						<p id=element_dot class=collapse>&nbsp; &nbsp; &nbsp; &nbsp; int na = A.length, nb = B.length;
+						<br>&nbsp; &nbsp; &nbsp; &nbsp; <span class=import>if</span> (<span class=v>na</span> != <span class=v>nb</span>) <span class=import>throw new</span> <span class=except>RuntimeException</span>(<span class=string>"Index Error"</span>);
+						<br>&nbsp; &nbsp; &nbsp; &nbsp; double[] C = new double[na];
+						<br>&nbsp; &nbsp; &nbsp; &nbsp; for (int i = 0; i < na; i++)
+						<br>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; C[i] = A[i] * B[i];
+						<br>&nbsp; &nbsp; &nbsp; &nbsp; <span class=import>return</span> <span class=v>C</span>;
+						<br>&nbsp; &nbsp; }</p>
+						<br>
+						<br>&nbsp; &nbsp; <span class=import>static double</span>[] <a href=# data-toggle="collapse" data-target="#element_divide">element_divide</a>(<span class=import>double</span>[] <span class=arg>A</span>, <span class=import>double</span>[] <span class=arg>B</span>) {
+						<p id=element_divide class=collapse>&nbsp; &nbsp; &nbsp; &nbsp; int na = A.length, nb = B.length;
+						<br>&nbsp; &nbsp; &nbsp; &nbsp; <span class=import>if</span> (<span class=v>na</span> != <span class=v>nb</span>) <span class=import>throw new</span> <span class=except>RuntimeException</span>(<span class=string>"Index Error"</span>);
+						<br>&nbsp; &nbsp; &nbsp; &nbsp; double[] C = new double[na];
+						<br>&nbsp; &nbsp; &nbsp; &nbsp; for (int i = 0; i < na; i++)
+						<br>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; C[i] = A[i] / B[i];
+						<br>&nbsp; &nbsp; &nbsp; &nbsp; <span class=import>return</span> <span class=v>C</span>;
+						<br>&nbsp; &nbsp; }</p>
+						<br>
+						<br>&nbsp; &nbsp; <span class=import>static double</span>[][] <a href=# data-toggle="collapse" data-target="#inv">inv</a>(<span class=import>double</span>[][] <span class=arg>A</span>) {
+						<p id=inv class=collapse>&nbsp; &nbsp; &nbsp; &nbsp;int m = A.length, n = A[0].length;
+						<br>&nbsp; &nbsp; &nbsp; &nbsp;double[][] inverse = new double[m][n];
+						<br>&nbsp; &nbsp; &nbsp; &nbsp;//minors and cofactors
+						<br>&nbsp; &nbsp; &nbsp; &nbsp; <span class=import>for</span> (<span class=import>int i</span> = 0; <span class=v>i</span> < <span class=v>m</span>; <span class=v>i</span>++)
+						<br>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; for (int j = 0; j < n; j++)
+						<br>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;if (m > 2) {
+						<br>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; inverse[i][j] = Math.pow(-1, i + j) * determinant(minor(A, i, j));
+						<br>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; }else {
+						<br>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; if (i == j) {
+						<br>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;inverse[i][i] = Math.pow(-1, i + j) * A[1-i][1-i];
+						<br>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; }else {
+						<br>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;inverse[i][j] = Math.pow(-1, i + j) * A[j][i];
+						<br>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; }
+						<br>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; }
+						<br>&nbsp; &nbsp; &nbsp; &nbsp;//adjugate and determinant
+						<br>&nbsp; &nbsp; &nbsp; &nbsp;double det = 1.0 / determinant(A);
+						<br>&nbsp; &nbsp; &nbsp; &nbsp;for (int i = 0; i < inverse.length; i++) {
+						<br>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; for (int j = 0; j <= i; j++) {
+						<br>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;double temp = inverse[i][j];
+						<br>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;inverse[i][j] = inverse[j][i] * det;
+						<br>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;inverse[j][i] = temp * det;
+						<br>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; }
+						<br>&nbsp; &nbsp; &nbsp; &nbsp;}
+						<br>&nbsp; &nbsp; &nbsp; &nbsp;return inverse;
+						<br>&nbsp; &nbsp; }</p>
+						<br>
+						<br>&nbsp; &nbsp; <span class=import>static double</span> <a href=# data-toggle="collapse" data-target="#determinant">determinant</a>(<span class=import>double</span>[][] <span class=arg>A</span>) {
+						<p id=determinant class=collapse>&nbsp; &nbsp; &nbsp; &nbsp; if (A.length != A[0].length)
+						<br>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; throw new IllegalStateException("invalid dimensions");
+						<br>
+						<br>&nbsp; &nbsp; &nbsp; &nbsp; if (A.length == 2)
+						<br>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; return A[0][0] * A[1][1] - A[0][1] * A[1][0];
+						<br>
+						<br>&nbsp; &nbsp; &nbsp; &nbsp; double det = 0;
+						<br>&nbsp; &nbsp; &nbsp; &nbsp; for (int i = 0; i < A[0].length; i++)
+						<br>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; det += Math.pow(-1, i) * A[0][i] * determinant(minor(A, 0, i));
+						<br>&nbsp; &nbsp; &nbsp; &nbsp; return det;
+						<br>&nbsp; &nbsp; }</p>
+						<br>
+						<br>&nbsp; &nbsp; <span class=import>static double</span>[][] <a href=# data-toggle="collapse" data-target="#minor">minor</a>(<span class=import>double</span>[][] <span class=arg>A</span>, <span class=import>int</span> <span class=arg>row</span>, <span class=import>int</span> <span class=arg>column</span>) {
+						<p id=minor class=collapse>&nbsp; &nbsp; &nbsp; &nbsp; double[][] minor = new double[A.length - 1][A.length - 1];
+						<br>
+						<br>&nbsp; &nbsp; &nbsp; &nbsp; for (int i = 0; i < A.length; i++)
+						<br>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; for (int j = 0; i != row && j < A[i].length; j++)
+						<br>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; if (j != column)
+						<br>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; minor[i < row ? i : i - 1][j < column ? j : j - 1] = A[i][j];
+						<br>&nbsp; &nbsp; &nbsp; &nbsp; return minor;
+						<br>&nbsp; &nbsp; }</p>
+						<br>
+						<br>&nbsp; &nbsp; <span class=import>static double</span> <a href=# data-toggle="collapse" data-target="#abs">abs</a>(<span class=import>double</span>[] <span class=arg>A</span>) {
+						<p id=abs class=collapse>&nbsp; &nbsp; &nbsp; &nbsp; double len = 0;
+						<br>&nbsp; &nbsp; &nbsp; &nbsp; for (double ele: A)
+						<br>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; len += Math.pow(ele, 2);
+						<br>&nbsp; &nbsp; &nbsp; &nbsp; return Math.sqrt(len);
+						<br>&nbsp; &nbsp; }</p>
+						<br>
+						<br>}	
+					</div>
+				</div>
+				<p>addition, subtraction, multiplication and division</p>
+			</div>
+		</div>
+
+		<div class="post">
+			<h1 id="equation" class="title">Equation</h1>
+			<p class="byline"><small>Edited on July 9th, 2018 by <a target="_blank" rel="noopener noreferrer" href="http://github.com/Berchem">Berchem</a></small></p>
+			<div class="entry">
+				<p>Linear Algebra, a little Calculus, a little linear algebra</p>
+				<div class=pseudo>
+					<div>
+						<span class=import>public class</span> <span class=class_color>core</span> {
+						<br>
+						<br>&nbsp; &nbsp; <span class=import>public static double</span> <a href=# data-toggle="collapse" data-target="#exp">exp</a>(<span class=import>double</span> <span class=arg>x</span>) {
+						<p id="exp" class=collapse>&nbsp; &nbsp; &nbsp; &nbsp; <span class=import>return</span> <span class=class_color>Math</span>.<span class=m>exp</span>(<span class=arg>x</span>);
+						<br>&nbsp; &nbsp; }</p>
+						<br>
+						<br>&nbsp; &nbsp; <span class=import>public static double</span> <a href=# data-toggle="collapse" data-target="#sigmoid1">sigmoid</a>(<span class=import>double</span> <span class=arg>x</span>) {
+						<p id="sigmoid1" class=collapse>&nbsp; &nbsp; &nbsp; &nbsp; <span class=import>return</span> 1 / (1 + <span class=m>exp</span>(-<span class=arg>x</span>));
+						<br>&nbsp; &nbsp; }</p>
+						<br>
+						<br>&nbsp; &nbsp; <span class=import>public static double</span>[] <a href=# data-toggle="collapse" data-target="#sigmoid2">sigmoid</a>(<span class=import>double</span>[] <span class=arg>x</span>){
+						<p id="sigmoid2" class=collapse>&nbsp; &nbsp; &nbsp; &nbsp; <span class=import>int len</span> = <span class=arg>x</span>.<span class=number>length</span>;
+						<br>&nbsp; &nbsp; &nbsp; &nbsp; <span class=import>double</span>[] <span class=import>y</span> = <span class=import>new double</span>>[<span class=v>len</span>];
+						<br>&nbsp; &nbsp; &nbsp; &nbsp; <span class=import>for</span> (<span class=import>int i</span> = 0; <span class=v>i</span> < <span class=v>len</span>; <span class=v>i</span>++)
+						<br>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <span class=v>y</span>[<span class=v>i</span>] = <span class=m>sigmoid</span>(<span class=arg>x</span>[<span class=v>i</span>]);
+						<br>&nbsp; &nbsp; &nbsp; &nbsp; <span class=import>return</span> <span class=v>y</span>;
+						<br>&nbsp; &nbsp; }</p>
+						<br>
+						<br>&nbsp; &nbsp; <span class=import>public static double</span>[] <a href=# data-toggle="collapse" data-target="#sigmoid_prime">sigmoid_prime</a>(<span class=import>double</span>[] <span class=arg>x</span>){
+						<p id=sigmoid_prime class=collapse>&nbsp; &nbsp; &nbsp; &nbsp; <span class=import>int len</span> = <span class=arg>x</span>.<span class=number>length</span>;
+						<br>&nbsp; &nbsp; &nbsp; &nbsp; <span class=import>double</span>[] <span class=import>y</span> = <span class=import>new double</span>[<span class=v>len</span>];
+						<br>&nbsp; &nbsp; &nbsp; &nbsp; <span class=import>for</span> (<span class=import>int i</span> = 0; <span class=v>i</span> < <span class=v>len</span>; <span class=v>i</span>++)
+						<br>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <span class=v>y</span>[<span class=v>i</span>] = <span class=m>sigmoid</span>(<span class=arg>x</span>[<span class=v>i</span>]) * (1 - <span class=m>sigmoid</span>(<span class=arg>x</span>[<span class=v>i</span>]);
+						<br>&nbsp; &nbsp; &nbsp; &nbsp; <span class=import>return</span> <span class=v>y</span>;
+						<br>&nbsp; &nbsp; }</p>
+						<br>	
+						<br>&nbsp; &nbsp; <span class=import>public static double</span> <a href=# data-toggle="collapse" data-target="#like_i">log_likelihood_i</a>(<span class=import>double</span>[] <span class=arg>x_i</span>, <span class=import>double</span> <span class=arg>y_i</span>, <span class=import>double</span>[] <span class=arg>w</span>) {
+						<p id=like_i class=collapse>&nbsp; &nbsp; &nbsp; &nbsp; <span class=import>return</span> <span class=class_color>Math</span>.<span class=m>log</span>(<span class=m>sigmoid</span>(<span class=arg>y_i</span> * <span class=class_color>Matrix</span>.<span class=m>dot</span>(<sapn class=arg>x_i</sapn>, <span class=arg>w</span>)));
+						<br>&nbsp; &nbsp; }</p>
+						<br>	
+						<br>&nbsp; &nbsp; <span class=import>public static double</span> <a href=# data-toggle="collapse" data-target="#like">log_likelihood</a>(<span class=import>double</span>[][] <span class=arg>x</span>, <span class=import>double</span>[] <span class=arg>y</span>, <span class=import>double</span>[] <span class=arg>w</span>) {
+						<p id=like class=collapse>&nbsp; &nbsp; &nbsp; &nbsp; <span class=import>double l</span> = 0;
+						<br>&nbsp; &nbsp; &nbsp; &nbsp; <span class=import>for</span> (<span class=import>int i</span> = 0; <span class=v>i</span> < <span class=arg>x</span>.<span class=number>length</span>; <span class=v>i</span>++)
+						<br>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <span class=v>l</span> += <span class=m>log_likelihood_i</span>(<span class=arg>x</span>[<span class=v>i</span>], <span class=arg>y</span>[<span class=v>i</span>], <span class=arg>w</span>);
+						<br>&nbsp; &nbsp; &nbsp; &nbsp; <span class=import>return</span> <span class=v>l</span>;
+						<br>&nbsp; &nbsp; }</p>
+						<br>
+						<br>&nbsp; &nbsp; <span class=import>public static double</span>[][] <a href=# data-toggle="collapse" data-target="#hess">hessian</a>(<span class=import>double</span>[][] <span class=arg>x</span>, <span class=import>double</span>[][] <span class=arg>A</span>, <span class=import>double</span>[][] <span class=arg>lambda</span>) {
+						<p id=hess class=collapse>&nbsp; &nbsp; &nbsp; &nbsp; <span class=import>double</span>[][] <span class=import>H</span> = <span class=class_color>Matrix</span>.<span class=m>plus</span>(<span class=class_color>Matrix</span>.<span class=m>dot</span>(<span class=class_color>Matrix</span>.<span class=m>dot</span>(<span class=class_color>Matrix</span>.<span class=m>transpose</span>(<span class=arg>x</span>),
+						<br>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <span class arg>A</span>), <span class=arg>x</span>), <span class=arg>lambda</span>);
+						<br>&nbsp; &nbsp; &nbsp; &nbsp; <span class=import>return</span> <span class=v>H</span>;
+						<br>&nbsp; &nbsp; }</p>
+						<br>
+						<br>&nbsp; &nbsp; <span class=import>public static double</span>[] <a href=# data-toggle="collapse" data-target="#linspace1">linspace</a>(<span class=import>double</span> <span class=arg>start</span>, <span class=import>double</span> <span class=arg>end</span>, <span class=import>int</span> <span class=arg>n</span>) {
+						<p id=linspace1 class=collapse>&nbsp; &nbsp; &nbsp; &nbsp; <span class=import>double</span>[] <span class=import>list</span> = <span class=import>new double</span>[<span class=arg>n</span>];
+						<br>&nbsp; &nbsp; &nbsp; &nbsp; <span class=import>for</span> (<span class=import>int i</span> = 0; <span class=v>i</span> < <span class=arg>n</span>; <span class=v>i</span>++)
+						<br>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <span class=v>list</span>[<span class=v>i</span>] = <span class=arg>start</span> + (<span class=import>double</span>)(<span class=arg>end</span> - <span class=arg>start</span>) / (<span class=arg>n</span> - 1) * <span class=v>i</span>;
+						<br>&nbsp; &nbsp; &nbsp; &nbsp; <span class=import>return</span> <span class=v>list</span>;
+						<br>&nbsp; &nbsp; }</p>
+						<br>
+						<br>&nbsp; &nbsp; <span class=import>public static double</span>[] <a href=# data-toggle="collapse" data-target="#linspace2">linspace</a>(<span class=import>double</span> <span class=arg>start</span>, <span class=import>double</span> <span class=arg>end</span>) {
+						<p id=linspace2 class=collapse>&nbsp; &nbsp; &nbsp; &nbsp; <span class=import>return</span> <span class=m>linspace</span>(<span class=arg>start</span>, <sapn class=arg>end</sapn>, 50);
+						<br>&nbsp; &nbsp; }</p>
+						<br>
+						<br>&nbsp; &nbsp; <span class=import>public static double</span>[] <a href=# data-toggle="collapse" data-target="#ones">ones</a>(<span class=import>int</span> <span class=arg>n</span>) {
+						<p id=ones class=collapse>&nbsp; &nbsp; &nbsp; &nbsp; <span class=import>double</span>[] <span class=import>onearray</span> = <span class=import>new double</span>[<span class=arg>n</span>];
+						<br>&nbsp; &nbsp; &nbsp; &nbsp; <span class=import>for</span> (<span class=import>int i</span> = 0; <span class=v>i</span> < <span class=arg>n</span>; <span class=v>i</span>++)
+						<br>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <span class=v>onearray</span>[<span class=v>i</span>] = 1.0;
+						<br>&nbsp; &nbsp; &nbsp; &nbsp; <span class=import>return</span> <span class=v>onearray</span>;
+						<br>&nbsp; &nbsp; }</p>
+						<br>
+						<br>&nbsp; &nbsp; <span class=import>public static double</span>[] <a href=# data-toggle="collapse" data-target="#ns">ones</a>(<span class=import>int</span> <span class=arg>n</span>, <span class=import>double</span> <span class=arg>x</span>) {
+						<p id=ns class=collapse>&nbsp; &nbsp; &nbsp; &nbsp; <span class=import>double</span>[] <span class=import>onearray</span> = <span class=import>new double</span>[<span class=arg>n</span>];
+						<br>&nbsp; &nbsp; &nbsp; &nbsp; <span class=import>for</span> (<span class=import>int i</span> = 0; <span class=v>i</span> < <span class=arg>n</span>; <span class=v>i</span>++)
+						<br>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <span class=v>onearray</span>[<span class=v>i</span>] = <span class=arg>x</span>;
+						<br>&nbsp; &nbsp; &nbsp; &nbsp; <span class=import>return</span> <span class=v>onearray</span>;
+						<br>&nbsp; &nbsp; }</p>
+						<br>
+						<br>}
+					</div>								
+				</div>
+			</div>
+		</div>
+
+		<div class="post">
+			<h1 id="algorithm" class="title">Algorithm</h1>
+			<p class="byline"><small>Retrieved via <a target="_blank" rel="noopener noreferrer" href="https://en.wikipedia.org/">wiki</a> | <a target="_blank" rel="noopener noreferrer" href="http://scikit-learn.org/stable/modules/generated/sklearn.linear_model.LogisticRegression.html">scikit-learn</a> July 3rd, 2018</small></p>
+			<div class="entry">
+				<p>LogisticRegression</p>
+				<div class=pseudo>
+					<p>
+						<span class=import>class</span> <span class=class_color>LogisticRegression</span>{
+						<br>&nbsp; &nbsp; double tol = 1e-8;
+						<br>&nbsp; &nbsp; int lim = 100;
+						<br>&nbsp; &nbsp; double lambda = 1.0;
+						<br>&nbsp; &nbsp; double[][] x;
+						<br>&nbsp; &nbsp; double[] y;
+						<br>&nbsp; &nbsp; boolean fit_intercept = true;
+						<br>
+						<br>&nbsp; &nbsp; public LogisticRegression() {
+						<br>
+						<br>&nbsp; &nbsp; }
+						<br>
+						<br>&nbsp; &nbsp; public LogisticRegression(double[][] x, double[] y) {
+						<br>&nbsp; &nbsp; &nbsp; &nbsp; this.x = _reshape_x(x);
+						<br>&nbsp; &nbsp; &nbsp; &nbsp; this.y = _rescale_y(y);
+						<br>&nbsp; &nbsp; }
+						<br>
+						<br>&nbsp; &nbsp; public LogisticRegression(double[][] x, double[] y, boolean fit_intercept) {
+						<br>&nbsp; &nbsp; &nbsp; &nbsp; if (fit_intercept)
+						<br>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; this.x = _reshape_x(x);
+						<br>&nbsp; &nbsp; &nbsp; &nbsp; else 
+						<br>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; this.x = x;
+						<br>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; this.y = _rescale_y(y);
+						<br>&nbsp; &nbsp; }
+						<br>
+						<br>&nbsp; &nbsp; private double[][] _reshape_x(double[][] X){
+						<br>&nbsp; &nbsp; &nbsp; &nbsp; int m = X.length;
+						<br>&nbsp; &nbsp; &nbsp; &nbsp; int n = X[0].length;
+						<br>&nbsp; &nbsp; &nbsp; &nbsp; double[][] Xnew = new double[m][n + 1];
+						<br>&nbsp; &nbsp; &nbsp; &nbsp; for (int i = 0; i < m; i++) {
+						<br>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; Xnew[i][0] = 1.0;
+						<br>&nbsp; &nbsp; &nbsp; &nbsp; for (int j = 0; j < n; j++)
+						<br>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; Xnew[i][j + 1] = X[i][j]; 
+						<br>&nbsp; &nbsp; &nbsp; &nbsp; }
+						<br>&nbsp; &nbsp; &nbsp; &nbsp; return Xnew;
+						<br>&nbsp; &nbsp; }
+						<br>
+						<br>&nbsp; &nbsp; private double[] _rescale_y(double[] Y){
+						<br>&nbsp; &nbsp; &nbsp; &nbsp; int m = Y.length;
+						<br>&nbsp; &nbsp; &nbsp; &nbsp; double[] Ynew = new double[m];
+						<br>&nbsp; &nbsp; &nbsp; &nbsp; for (int i = 0; i < m; i++) 
+						<br>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; Ynew[i] = (Y[i] - 0.5) * 2; 
+						<br>&nbsp; &nbsp; &nbsp; &nbsp; return Ynew;
+						<br>&nbsp; &nbsp; }
+						<br>	
+						<br>}
+					</p>
+				</div>
+
+				<p>newton</p>
+				<div class=pseudo>
+					<p>
+						class newton extends LogisticRegression{
+						<br>&nbsp; &nbsp; private double[] w1;
+						<br>&nbsp; &nbsp; private double[][] H;
+						<br>
+						<br>&nbsp; &nbsp; public newton() {
+						<br>
+						<br>&nbsp; &nbsp; }
+						<br>
+						<br>&nbsp; &nbsp; public newton(double[][] X, double[] Y) {
+						<br>&nbsp; &nbsp; &nbsp; &nbsp; super(X, Y);
+						<br>&nbsp; &nbsp; &nbsp; &nbsp; calculate(x, y);
+						<br>&nbsp; &nbsp; }
+						<br>
+						<br>&nbsp; &nbsp; public newton(double[][] X, double[] Y, double lambda) {
+						<br>&nbsp; &nbsp; &nbsp; &nbsp; super(X, Y);
+						<br>&nbsp; &nbsp; &nbsp; &nbsp; this.lambda = lambda;
+						<br>&nbsp; &nbsp; &nbsp; &nbsp; calculate(x, y);
+						<br>&nbsp; &nbsp; }
+						<br>	
+						<br>&nbsp; &nbsp; public newton(double[][] X, double[] Y, double lambda, int lim) {
+						<br>&nbsp; &nbsp; &nbsp; &nbsp; super(X, Y);
+						<br>&nbsp; &nbsp; &nbsp; &nbsp; this.lambda = lambda;
+						<br>&nbsp; &nbsp; &nbsp; &nbsp; this.lim = lim;
+						<br>&nbsp; &nbsp; &nbsp; &nbsp; calculate(x, y);
+						<br>&nbsp; &nbsp; }
+						<br>
+						<br>&nbsp; &nbsp; newton(double[][] X, double[] Y, double lambda, int lim, boolean fit_intercept) {
+						<br>&nbsp; &nbsp; &nbsp; &nbsp; super(X, Y, fit_intercept);
+						<br>&nbsp; &nbsp; &nbsp; &nbsp; this.lambda = lambda;
+						<br>&nbsp; &nbsp; &nbsp; &nbsp; this.lim = lim;
+						<br>&nbsp; &nbsp; &nbsp; &nbsp; calculate(x, y);
+						<br>&nbsp; &nbsp; }
+						<br>
+						<br>&nbsp; &nbsp; public newton(double[][] X, double[] Y, double lambda, int lim, boolean fit_intercept, double tol) {
+						<br>&nbsp; &nbsp; &nbsp; &nbsp; super(X, Y, fit_intercept);
+						<br>&nbsp; &nbsp; &nbsp; &nbsp; this.lambda = lambda;
+						<br>&nbsp; &nbsp; &nbsp; &nbsp; this.tol = tol;
+						<br>&nbsp; &nbsp; &nbsp; &nbsp; this.lim = lim;
+						<br>&nbsp; &nbsp; &nbsp; &nbsp; super.fit_intercept = fit_intercept;
+						<br>&nbsp; &nbsp; &nbsp; &nbsp; calculate(x, y);
+						<br>&nbsp; &nbsp; }
+							
+						<br>&nbsp; &nbsp; private void calculate(double[][] x, double[] y) {
+						<br>&nbsp; &nbsp; &nbsp; &nbsp; int m = this.x.length;
+						<br>&nbsp; &nbsp; &nbsp; &nbsp; int n = this.x[0].length;
+						<br>&nbsp; &nbsp; &nbsp; &nbsp; if (m != y.length) throw new IllegalStateException("invalid dimensions");
+						<br>		
+						<br>&nbsp; &nbsp; &nbsp; &nbsp; double[] w0 = new double[n];
+						<br>&nbsp; &nbsp; &nbsp; &nbsp; w1 = new double[n];
+						<br>&nbsp; &nbsp; &nbsp; &nbsp; H = new double[n][n];
+						<br>
+						<br>&nbsp; &nbsp; &nbsp; &nbsp; int times = 0;
+						<br>
+						<br>&nbsp; &nbsp; &nbsp; &nbsp; double[] a = new double[n];
+						<br>&nbsp; &nbsp; &nbsp; &nbsp; double[][] lambda = Matrix.diagflat(core.ones(n, this.lambda));
+						<br>&nbsp; &nbsp; &nbsp; &nbsp; double[][] A = new double[m][m];
+						<br>&nbsp; &nbsp; &nbsp; &nbsp; double[] z = new double[n];
+						<br>&nbsp; &nbsp; &nbsp; &nbsp; double[] XAz = new double[n];
+						<br>
+						<br>&nbsp; &nbsp; &nbsp; &nbsp; while (times < lim) {
+						<br>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; // update parameter
+						<br>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; w0 = w1;
+						<br>
+						<br>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; // calculate diagonal matrix, that a is the A_ii
+						<br>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; a = core.sigmoid_prime(Matrix.dot(x, w0));
+						<br>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; A = Matrix.diagflat(a);
+						<br>	
+						<br>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; // Hessian matrix
+						<br>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; H = core.hessian(x,  A, lambda);
+						<br>	
+						<br>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; // a part of gradient objective and combine previous iterated parameter
+						<br>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; z = Matrix.plus(Matrix.dot(x, w0), Matrix.element_divide(
+						<br>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; Matrix.element_dot(Matrix.sub(core.ones(m), 
+						<br>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; core.sigmoid(Matrix.element_dot(y, Matrix.dot(x, w0)))), y), a));
+						<br>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; XAz = Matrix.dot(Matrix.dot(Matrix.transpose(x), A), z);
+						<br>
+						<br>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; // calculate current parameter
+						<br>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; w1 = Matrix.dot(Matrix.inv(H), XAz);
+						<br>
+						<br>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; if (Matrix.abs(Matrix.sub(w1, w0)) < tol) {
+						<br>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; break;
+						<br>	
+						<br>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; }else {
+						<br>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; times++;
+									
+						<br>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; }
+						<br>&nbsp; &nbsp; &nbsp; &nbsp; }
+						<br>&nbsp; &nbsp; }
+						<br>
+						<br>&nbsp; &nbsp; public double[] get_weight() {
+						<br>&nbsp; &nbsp; &nbsp; &nbsp; return this.w1;
+						<br>&nbsp; &nbsp; }
+						<br>
+						<br>&nbsp; &nbsp; public double[] <a data-toggle="collapse" data-target="#demo">get_weight</a>() {
+						<p id="demo" class="collapse">
+							&nbsp; &nbsp; &nbsp; &nbsp; return this.w1;
+							<br>&nbsp; &nbsp; }
+						</p>
+						<br>}
+					</p>
+				</div>
+			</div>
+		</div>
+
+		<div class="post">
+			<h1 id="io" class="title">Reading & Writing File</h1>
+			<p class="byline"><small>Retrieved via <a target="_blank" rel="noopener noreferrer" href="https://en.wikipedia.org/">wiki</a> | <a target="_blank" rel="noopener noreferrer" href="http://scikit-learn.org/stable/modules/generated/sklearn.linear_model.LogisticRegression.html">scikit-learn</a> July 3rd, 2018</small></p>
+			<div class="entry">
+				<p>I/O</p>
+				<div class=pseudo>
+					<p>
+						public class importData {
+						<br>
+						<br>private String src;
+						<br>private String dst;
+						<br>private List<double[]> raw = new ArrayList<>();
+						<br>
+						<br>public importData() {
+						<br>	
+						<br>}
+						<br>
+						<br>public void read(String filename) throws FileNotFoundException {
+						<br>	src = filename;
+						<br>		
+						<br>	List<String> list = new ArrayList<>();
+						<br>
+						<br>	Scanner scanner = new Scanner(new File(src));
+						<br>	scanner.useDelimiter(",");
+						<br>	while(scanner.hasNext()){
+						<br>		String ele = scanner.next();
+						<br>		
+						<br>		if (ele.contains("\n")) {
+						<br>			String[] eles = ele.split("\n");
+						<br>			list.add(eles[0]);
+						<br>			int add_line = 0;
+						<br>			double[] line = new double[list.size()];
+						<br>			for (int j = 0; j < list.size(); j++)
+						<br>				try {
+						<br>					line[j] = Double.parseDouble(list.get(j));
+						<br>				}catch (Exception e) {
+						<br>					add_line++;
+						<br>					continue;
+						<br>				}
+						<br>			if (add_line == 0)
+						<br>				raw.add(line);
+						<br>			
+						<br>			list.clear();
+						<br>			try {
+						<br>				list.add(eles[1]);
+						<br>			}catch (ArrayIndexOutOfBoundsException e) {
+						<br>				System.out.println("finish reading");
+						<br>			}
+						<br>			
+						<br>		}else {
+						<br>			list.add(ele);
+						<br>		}
+						<br>
+						<br>	}
+						<br>	scanner.close();
+						<br>
+						<br>}
+						<br>
+						<br>public double[][] list2array(){
+						<br>
+						<br>	int m = raw.size();
+						<br>	int n = raw.get(0).length;
+						<br>	double[][] data= new double[m][n];
+						<br>	for (int i = 0; i < m; i++)
+						<br>		for (int j = 0; j < n; j++)
+						<br>			try {
+						<br>				data[i][j] = raw.get(i)[j];
+						<br>			}catch (Exception e) {
+						<br>				continue;
+						<br>			}
+						<br>		
+						<br>	return data;
+						<br>}
+						<br>
+						<br>public void write(double[] w, String filename) throws FileNotFoundException, UnsupportedEncodingException {
+						<br>	dst = filename;
+						<br>	String s = "";
+						<br>	for (double w_i: w)
+						<br>		s += w_i + "\t";
+						<br>	PrintWriter writer = new PrintWriter(dst, "UTF-8");
+						<br>	writer.println(s);
+						<br>	writer.close();
+						<br>}
+						<br>}
+					</p>
+				</div>
+			</div>
+		</div>
+
+		<div class="post">
+			<h1 id="export" class="title">Export Runable .jar File</h1>
+			<p class="byline"><small>Retrieved via <a target="_blank" rel="noopener noreferrer" href="https://en.wikipedia.org/">wiki</a> | <a target="_blank" rel="noopener noreferrer" href="http://scikit-learn.org/stable/modules/generated/sklearn.linear_model.LogisticRegression.html">scikit-learn</a> July 3rd, 2018</small></p>
+			<div class="entry">
+				<p>
+					Linear Algebra, a little Calculus, a little linear algebra
+				</p>
+			</div>
+		</div>
+
+		<div class="post">
+			<h1 id="summary" class="title">Summary</h1>
+			<p class="byline"><small>Retrieved via <a target="_blank" rel="noopener noreferrer" href="https://en.wikipedia.org/">wiki</a> | <a target="_blank" rel="noopener noreferrer" href="http://scikit-learn.org/stable/modules/generated/sklearn.linear_model.LogisticRegression.html">scikit-learn</a> July 3rd, 2018</small></p>
+			<div class="entry">
+				<strong>Mathematics</strong>
+				<p>&nbsp; &nbsp; a little Calculus</p>
+				<p>&nbsp; &nbsp; a little linear algebra</p>
+			
+				<strong>Java</strong>
+				<p>&nbsp; &nbsp; for,
+					<br>while,
+					<br>if... else...,
+					<br>swith... cass...,
+					<br>class: inheritance, access level,
+					<br>method: overload, recursion,
+					<br>String,
+					<br>Double,
+					<br>Array,
+					<br>List,
+					<br>File,
+					<br>Scanner,
+					<br>Printer
+				</p>
+			</div>
+		</div>
+	</div>
+	<!-- end content -->
+	<!-- start sidebar -->
+	<div id="sidebar">
+		<ul>
+			<li>
+				<h2>Categories</h2>
+				<ul id=tech-pulg-in>
+					<li><a href="introdution.html">What's Logistic Regression</a></li>
+					<li><a href="result.html">Java Result versus Scikit-learn</a></li>
+					<li><a href="jupyter-notebook.html">Algorithm for Logistic Regression</a></li>
+					<li><a href="class_diagram_current.html">Class Diagram</a></li>
+					<li><a href="#" data-toggle="collapse" data-target="#tech">Technique for Building Algorithm</a></li>
+					<div id=tech class=collapse>
+						<li><a href="#matrix">&nbsp; &nbsp; &nbsp; &nbsp; Matrix</a></li>
+						<li><a href="#equation">&nbsp; &nbsp; &nbsp; &nbsp; Equation</a></li>
+						<li><a href="#algorithm">&nbsp; &nbsp; &nbsp; &nbsp; Algorithm</a></li>
+						<li><a href="#io">&nbsp; &nbsp; &nbsp; &nbsp; Reading & Writing File</a></li>
+						<li><a href="#export">&nbsp; &nbsp; &nbsp; &nbsp; Export Runable .jar File</a></li>
+						<li><a href="#summary">&nbsp; &nbsp; &nbsp; &nbsp; Summary</a></li>
+					</div>
+				</ul>
+			</li>
+			<li>
+				<h2>Appendix</h2>
+				<ul>
+					<li><a href="logistic.html">Logistic Regression</a></li>
+					<li><a href="map.html">Maximum-a-Posteriori</a></li>
+					<li><a href="newton.html">Newton's Method</a></li>
+					<li><a href="bernoulli.html">Bernoulli Distribution</a></li>
+				</ul>
+			</li>
+		</ul>
+	</div>
+	<!-- end sidebar -->
+</div>
+
+<!-- end page -->
+<div id="footer">
+	<p>&copy; 2018 All Rights Reserved &nbsp;&bull;&nbsp; Edit by <a target="_blank" rel="noopener noreferrer" href="http://github.com/Berchem">Berchem Lin</a>.</p>
+</div>
+</body>
+</html>

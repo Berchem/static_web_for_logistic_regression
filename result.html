@@ -1,0 +1,339 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+	<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+	<title>Side Project</title>
+	<meta name="keywords" content="" />
+	<meta name="description" content="" />
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+	<link href="css/style.css" rel="stylesheet" type="text/css" media="screen" />
+</head>
+
+<body>
+
+	<!-- start header -->
+	<div id="header">
+		<h1>Logistic Regression</h1>
+	</div>
+	<!-- end header -->
+	<!-- start page -->
+	<div id="page">
+		<!-- start content -->
+		<div id="content">
+			<!-- title -->
+			<div class="post">
+				<h2 class="title" id=bridge>Bridge to Java</h2>
+				<p class="byline">
+					<small>Edited on July 4th, 2018 by <a target="_blank" rel="noopener noreferrer" href="http://github.com/Berchem">Berchem</a></small></p>
+				<div class="entry">
+					<p>Export a runnable .jar file, <strong>logistic.jar</strong>, and use Python os libary executing operating system commands.</p>
+					<div class="pseudo"> 
+						<p>
+							<a class=shebang >#! python2.7</a>
+							<br><a class=shebang>#!-*- coding: utf-8 -*-</a>
+							<br>
+							<br><a class=import>import</a> os
+							<br>
+							<br>src = <a class=string>"data_set.csv"</a>
+							<br>dst = <a class=string>"result.txt"</a>
+							<br>
+							<br>os.system(<a class=string>"java -jar logistic.jar src dst"</a>)
+							<br>
+							<br>
+						</p>
+					</div>
+
+					<p>Read the calculated result (weight parameter) via Java.</p>
+					<div class="pseudo">
+						<p>
+							...
+							<br><a class=import>with</a> <a class=stlib>open</a>(dst) <a class=import>as</a> f: 
+							<br>&nbsp; &nbsp; string = f.read()
+							<br>
+							<br>w_java = [<a class=stlib>float</a>(i) <a class=import>for</a> i <a class=import>in</a> string.strip().split(<a class=string>"</a><a class=import>\t</a><a class=string>"</a>)]
+							<br>
+							<br>
+						</p>
+					</div>
+
+					<p>We had got the answer w_java, but we did not for sure if it correct. So building a logistic regression with <a target="_blank" rel="noopener noreferrer" href="http://scikit-learn.org/stable/modules/generated/sklearn.linear_model.LogisticRegression.html">class <strong>LogisticRegression</strong></a> in sklearn.linear_model package to check the answer.</p>
+					<div>
+						<table>
+							<thead>
+								<caption style="margin: 5px; text-align: left">data_frame.head() <br>viewing the first 5 lines</caption>
+								<tr>
+									<th>admit</th>
+									<th>gre</th>
+									<td>gpa</th>
+									<th>rank</th>
+								</tr>
+							</thead>
+							<tbody>
+								<tr>
+									<td>0</td>
+									<td>380</td>
+									<td>3.61</td>
+									<td>3</td>
+								</tr>
+								<tr>
+									<td>1</td>
+									<td>660</td>
+									<td>3.67</td>
+									<td>3</td>
+								</tr>
+								<tr>
+									<td>1</td>
+									<td>800</td>
+									<td>4</td>
+									<td>1</td>
+								</tr>
+								<tr>
+									<td>1</td>
+									<td>640</td>
+									<td>3.19</td>
+									<td>4</td>
+								</tr>
+								<tr>
+									<td>0</td>
+									<td>520</td>
+									<td>2.93</td>
+									<td>4</td>
+								</tr>
+							</tbody>
+						</table>
+					</div>
+					<div class="pseudo">
+						<p>
+							...
+							<br><a class=import>import</a> pandas <a class=import>as</a> pd
+							<br><a class=import>from</a> sklearn.linear_model <a class=import>import</a> LogisticRegression
+							<br><a class=shebang># import data</a>
+							<br>data_frame = pd.read_csv(src)
+							<br>
+							<br><a class=shebang># get data label</a>
+							<br>col = data_frame.columns.values
+							<br>
+							<br><a class=shebang># outcome y</a>
+							<br>y = data_frame[[<a class=string>"admit"</a>]]
+							<br>
+							<br><a class=shebang># variables x</a>							
+							<br>x = data_frame.loc[:<a class=import>,</a> col[col != <a class=string>"admit"</a>]]
+							<br>
+							<br>lr = LogisticRegression()&nbsp; <a class=shebang># create object, such as "Obj lr = new Obj()" in Java</a>	
+							<br>lr.fit(x<a class=import>,</a> y)&nbsp; <a class=shebang># use method fit() with input arguments x, y</a>
+							<br>
+							<br>
+						</p>
+					</div>
+					
+					<p>Get the fitting result, and convert the type to list.</p>
+					<div class="pseudo">
+						<p>
+							...
+							<br><a class=shebang># lr.intercept_: array, shape (1,) or (n_classes,)</a>
+							<br><a class=shebang># lr.coef_ : array, shape (1, n_features) or (n_classes, n_features)</a> 
+							<br>w_python = [lr.intercept_[<a class=number>0</a>]] + [w <a class=import>for</a> w <a class=import>in</a> lr.coef_[<a class=number>0</a>]]
+							<br>
+							<br>
+						</p>
+					</div>
+
+					<p>Orginizing our code...</p>
+					<div class="pseudo"> 
+						<p>
+							<a class=shebang >#! python2.7</a>
+							<br><a class=shebang>#!-*- coding: utf-8 -*-</a>
+							<br>
+							<br><a class=import>import</a> os
+							<br><a class=import>import</a> pandas <a class=import>as</a> pd
+							<br><a class=import>from</a> sklearn.linear_model <a class=import>import</a> LogisticRegression
+							<br>
+							<br>
+							<br><a class=import>def</a> <a class=func>compared</a>(src<a class=import>,</a> dst<a class=import>,</a> x<a class=import>,</a> y<a class=import>,</a> lamb<a class=import>,</a> lim<a class=import>,</a> fit_intercept<a class=import>,</a> tol):
+							<br>&nbsp; &nbsp; args = <a class=string>"%s %s %s %d %s %s"</a> % (&nbsp; <a class=shebang># set arguments</a>
+							<br>&nbsp; &nbsp; &nbsp; &nbsp; src<a class=import>,</a> dst<a class=import>,</a> <a class=stlib>str</a>(lamp)<a class=import>,</a> lim<a class=import>,</a> <a class=stlib>str</a>(fit_intercept).lower()<a class=import>,</a> <a class=stlib>tol</a>)
+
+							<br>&nbsp; &nbsp; os.system(<a class=string>"java -jar logistic.jar %s"</a> % (args))&nbsp; <a class=shebang># call jar file</a>
+							<br>&nbsp; &nbsp; <a class=import>with</a> <a class=stlib>open</a>(dst) <a class=import>as</a> f:&nbsp; <a class=shebang># load result</a>
+							<br>&nbsp; &nbsp; &nbsp; &nbsp; string = f.read()
+							<br>
+							<br>&nbsp; &nbsp; lr = LogisticRegression(
+							<br>&nbsp; &nbsp; &nbsp; &nbsp; <a class=karg>C</a>=1/lamb<a class=import>,</a> <a class=karg>iter_lim</a>=lim<a class=import>,</a> <a class=karg>fit_intercept</a>=fit_intercept<a class=import>,</a> <a class=karg>tol</a>=tol)	
+							<br>&nbsp; &nbsp; lr.fit(x<a class=import>,</a> y)&nbsp; <a class=shebang># use method fit() with input arguments x, y</a>
+							<br>
+							<br>&nbsp; &nbsp; w_java = [<a class=stlib>float</a>(i) <a class=import>for</a> i <a class=import>in</a> string.strip().split(<a class=string>"</a><a class=import>\t</a><a class=string>"</a>)]
+							<br>&nbsp; &nbsp; w_python = [lr.intercept_[<a class=number>0</a>]] + [w <a class=import>for</a> w <a class=import>in</a> lr.coef_[<a class=number>0</a>]]
+							<br>
+							<br>&nbsp; &nbsp; <a class=import>return</a> w_java<a class=import>,</a> w_python
+							<br>
+							<br>
+							<br>src = <a class=string>"data_set.csv"</a>
+							<br>dst = <a class=string>"result.txt"</a>
+							<br>
+							<br>data_frame = pd.read_csv(src)&nbsp; <a class=shebang># import data</a>
+							<br>col = data_frame.columns.values&nbsp; <a class=shebang># get data label</a>
+							<br>y = data_frame[[<a class=string>"admit"</a>]]&nbsp; <a class=shebang># outcome y</a>	
+							<br>x = data_frame.loc[:<a class=import>,</a> col[col != <a class=string>"admit"</a>]]&nbsp; <a class=shebang># variables x</a>	
+							<br>
+							<br>lamb = <a class=number>1.0</a>
+							<br>lim = <a class=number>20</a>
+							<br>fit_intercept = <a class=stlib>True</a>
+							<br>tol =  <a class=number>1e-8</a>
+							<br>
+							<br>weight = []
+							<br><a class=import>for</a> i <a class=import>in</a> <a class=stlib>xrange</a>(lim):
+							<br>&nbsp; &nbsp; w_j<a class=import>,</a> w_p = compared(src<a class=import>,</a> dst<a class=import>,</a> lamb<a class=import>,</a> lim<a class=import>,</a> fit_intercept<a class=import>,</a> tol)
+							<br>&nbsp; &nbsp; weight += [{<a class=string>"java"</a>: w_j<a class=import>,</a> <a class=string>"python"</a>: w_p}]
+							<br>
+							<br>
+						</p>
+					</div>
+
+				</div>
+			</div>
+
+			<!-- title TITANIC -->
+			<div class="post">
+				<h2 id=titanic class="title">Test Data - titanic.csv</h2>
+				<p class="byline">
+					<small>Created on June 25th, 2018 by <a target="_blank" rel="noopener noreferrer" href="http://github.com/Berchem">Berchem</a></small></p>
+				<div class="entry">
+						<table class=result-table>
+								<tr>
+									<th>exlpantory variables:</th>
+									<th>intercept</th>
+									<th>Pclass</th>
+									<th>Gender</th>
+									<th>Age</th>
+									<th>SibSp</th>
+									<th>Parch</th>
+									<th>Fare</th>
+								</tr>
+								<tr>
+									<td>w in python :</td>
+									<td>-0.1570</td>
+									<td>-1.1599</td>
+									<td>2.5378</td>
+									<td>-0.0377</td>
+									<td>-0.3474</td>
+									<td>-0.0857</td>
+									<td>0.0026</td>
+								</tr>
+								<tr>
+									<td>w in java :</td>
+									<td>-0.1570</td>
+									<td>-1.1599</td>
+									<td>2.5378</td>
+									<td>-0.0377</td>
+									<td>-0.3474</td>
+									<td>-0.0857</td>
+									<td>0.0026</td>
+								</tr>
+							</table>
+							<br>
+					<!-- Trigger the Modal - "TITANIC" -->
+					<img id="result-01" src="images/result.png" alt="titanic" width=100%>
+				</div>
+			</div>
+
+			<!-- title BINARY -->
+			<div class="post">
+				<h2 id=binary class="title">Test Data - binary.csv</h2>
+				<p class="byline">
+					<small>Created on June 21th, 2018 by <a target="_blank" rel="noopener noreferrer" href="http://github.com/Berchem">Berchem</a></small></p>
+				<div class="entry">
+					<table class=result-table>
+						<tr>
+							<th>exlpantory variables:</th>
+							<th>intercept</th>
+							<th>gre</th>
+							<th>gpa</th>
+							<th>rank</th>
+						</tr>
+						<tr>
+							<td>w in python :</td>
+							<td>-1.5125</td>
+							<td>0.0019</td>
+							<td>0.3196</td>
+							<td>-0.6056</td>
+						</tr>
+						<tr>
+						    <td>w in java :</td>
+							<td>-1.5125</td>
+							<td>0.0019</td>
+							<td>0.3196</td>
+							<td>-0.6056</td>
+						</tr>
+					</table>
+					<br>
+
+					<!-- Trigger the Modal - "BINARY" -->
+					<img id="result-00" src="images/binary.png" alt="binary" width=100%>
+				</div>
+			</div>
+
+			<!-- The Modal -->
+			<div class="post">
+				<div id="myModal" class="modal">
+
+					<!-- The Close Button -->
+					<span class="close">&times;</span>
+
+					<!-- Modal Content (The Image) -->
+					<img class="modal-content_result" id="img01">
+
+					<!-- Modal Caption (Image Text) -->
+					<div id="caption"></div>
+				</div>
+
+
+			</div>
+		</div>
+
+		<!-- end content -->
+		<!-- start sidebar -->
+		<div id="sidebar">
+			<ul>
+				<li>
+					<h2>Categories</h2>
+					<ul>
+						<li><a href="introdution.html">What's Logistic Regression</a></li>
+						<li><a href="#" data-toggle=collapse data-target="#result">Java Result versus Scikit-learn</a></li>
+						<div id=result class=collapse>
+							<li><a href="#bridge">&nbsp; &nbsp; &nbsp; &nbsp; Bridge to Java</a></li>
+							<li><a href="#titanic">&nbsp; &nbsp; &nbsp; &nbsp; Test Data - titanic</a></li>
+							<li><a href="#binary">&nbsp; &nbsp; &nbsp; &nbsp; Test Data - binary</a></li>
+						</div>
+						<li><a href="jupyter-notebook.html">Algorithm for Logistic Regression</a></li>
+						<li><a href="class_diagram_current.html">Class Diagram</a></li>
+						<li><a href="technique.html">Technique for Building</a></li>
+					</ul>
+				</li>
+				<li>
+					<h2>Appendix</h2>
+					<ul>
+						<li><a href="logistic.html">Logistic Regression</a></li>
+						<li><a href="map.html">Maximum-a-Posteriori</a></li>
+						<li><a href="newton.html">Newton's Method</a></li>
+						<li><a href="bernoulli.html">Bernoulli Distribution</a></li>
+					</ul>
+				</li>
+			</ul>
+		</div>
+		<!-- end sidebar -->
+	</div>
+
+	<!-- end page -->
+	<div id=footer>
+		<p>&copy; 2018 All Rights Reserved &nbsp;&bull;&nbsp; Edited by
+			<a target="_blank" rel="noopener noreferrer" href="http://github.com/Berchem">Berchem Lin</a>.</p>
+	</div>
+</body>
+<script src="js/modal.js"></script>
+<script src="js/result_titanic.js"></script>
+<script src="js/result_binary.js"></script>
+
+</html>

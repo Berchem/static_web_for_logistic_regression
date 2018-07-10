@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+<title>Side Project</title>
+<meta name="keywords" content="" />
+<meta name="description" content="" />
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<link href="css/style.css" rel="stylesheet" type="text/css" media="screen" />
+<script type="text/x-mathjax-config">
+	MathJax.Hub.Config({
+	  tex2jax: {
+		inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+		processEscapes: true
+	  }
+	});
+  </script>
+  
+  <script type="text/javascript"
+	  src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+  </script>
+</head>
+<body>
+
+<!-- start header -->
+<div id="header">
+	<h1>Logistic Regression</h1>
+</div>
+<!-- end header -->
+<!-- start page -->
+<div id="page">
+	<!-- start content -->
+	<div id="content">
+		<div class="post">
+			<h2 class="title" id=intro>Introduction</h2>
+			<p class="byline"><small>Retrieved via <a target="_blank" rel="noopener noreferrer" href="https://en.wikipedia.org/">wiki</a> | <a target="_blank" rel="noopener noreferrer" href="http://scikit-learn.org/stable/modules/generated/sklearn.linear_model.LogisticRegression.html">scikit-learn</a> July 3rd, 2018</small></p>
+			<img id=sigmoid src="images/sigmoid_function.png">
+			<div class="entry">
+				<p>&nbsp; &nbsp; In statistics, the <strong><a target="_blank" rel="noopener noreferrer" href="https://en.wikipedia.org/wiki/Logistic_function">Logistic Model</a></strong> is a statistical model that is usually taken to apply to a binary dependent variable. In regression analysis, <strong><a target="_blank" rel="noopener noreferrer" href="https://en.wikipedia.org/wiki/Logistic_regression">Logistic Regression</a></strong> is estimating the parameters of a logistic model. </p>
+				<p>&nbsp; &nbsp; More formally, a logistic model is one where the <a href="#log-odds"><strong>log-odds</strong></a> of the probability of an event is a linear combination of independent or predictor variables. The two possible dependent variable values are often labelled as "1" and "0", which represent outcomes such as pass/fail, win/lose, alive/dead or healthy/sick ... whatever. </p>
+				<p>&nbsp; &nbsp; The binary logistic regression model can be generalized to more than two levels of the dependent variable: categorical outputs with more than two values are modelled by multinomial logistic regression, and if the multiple categories are ordered, by ordinal logistic regression, for example the proportional <a href=#odds><strong>odds</strong></a> ordinal logistic model.</p>
+			</div>
+			
+		</div>
+		<div class="post" id=definition>
+			<h2 class="title">Definition of the logistic function</h2>
+			<p class="byline"><small>Retrieved via <a target="_blank" rel="noopener noreferrer" href="https://en.wikipedia.org/">wiki</a> July 3rd, 2018</small></p>
+			<div class="entry">
+				<p>&nbsp; &nbsp; An explanation of logistic regression can begin with an explanation of the standard logistic function. 
+					The logistic function is a sigmoid function, which takes any real input $t$, ($t\in ℝ$), 
+					and outputs a value between zero and one; for the logistic function, this is interpreted as taking input 
+					<a id=log-odds target="_blank" rel="noopener noreferrer" href="https://en.wikipedia.org/wiki/Logit">log-odds</a> and having output probability. 
+					The logistic function $\sigma(t)$ is defined as follows:
+					$$\sigma(t)=\frac{e^t}{e^t+1}=\frac{1}{1+e^{-t}}$$
+				</p>
+						
+				<p>&nbsp; &nbsp; Let us assume that $t$ t is a linear function of a single explanatory variable $x$ 
+					(the case where $t$ t is a linear combination of multiple explanatory variables is treated similarly). 
+					We can then express $t$ t as follows:
+					$$t=\beta_0 + \beta_1x$$
+				</p>
+
+				<p>&nbsp; &nbsp; And the logistic function can now be written as:
+					$$p(x)=\frac{1}{1+e^{-(\beta_0 + \beta_1x)}}$$
+				</p>
+				
+			</div>
+		</div>
+		<div class="post">
+			<h2 class="title" id=odds>Definition of the odds</h2>
+			<p class="byline"><small>Retrieved via <a target="_blank" rel="noopener noreferrer" href="https://en.wikipedia.org/">wiki</a> July 3rd, 2018</small></p>
+			<div class="entry">
+				<p>&nbsp; &nbsp; The odds of the dependent variable equaling a case (given some linear combination $x$ of the predictors) 
+					is equivalent to the exponential function of the linear regression expression. This illustrates 
+					how the logit serves as a link function between the probability and the linear regression expression. 
+					Given that the logit ranges between negative and positive infinity, it provides an adequate criterion upon 
+					which to conduct linear regression and the logit is easily converted back into the odds.
+				</p>
+
+				<p>&nbsp; &nbsp; So we define odds of the dependent variable equaling a case (given some linear combination $x$ of the predictors) as follows:
+					\begin{align}
+						\text{odds} &=\frac{p(x)}{1-p(x)}\\
+						&=\frac{(1 + e^{-(\beta_0 + \beta_1x)})^{-1}}{e^{-(\beta_0 + \beta_1x)}(1 + e^{-(\beta_0 + \beta_1x)})^{-1}}\\
+						&=e^{\beta_0 + \beta_1x}
+					\end{align}
+				</p>
+			</div>
+		</div>
+	</div>
+	<!-- end content -->
+	<!-- start sidebar -->
+	<div id="sidebar">
+		<ul>
+			<li>
+				<h2>Categories</h2>
+				<ul>
+					<li><a href="#" data-toggle=collapse data-target="#introduct">What's Logistic Regression</a></li>
+					<div id=introduct class=collapse>
+						<li><a href="#intro">&nbsp; &nbsp; &nbsp; &nbsp; Introduction</a></li>
+						<li><a href="#definition">&nbsp; &nbsp; &nbsp; &nbsp; Definition of the logistic function</a></li>
+						<li><a href="#odds">&nbsp; &nbsp; &nbsp; &nbsp; Definition of the odds</a></li>
+					</div>
+					<li><a href="result.html">Java Result versus Scikit-learn</a></li>
+					<li><a href="jupyter-notebook.html">Algorithm for Logistic Regression</a></li>
+					<li><a href="class_diagram_current.html">Class Diagram</a></li>
+					<li><a href="technique.html">Technique for Building</a></li>
+				</ul>
+			</li>
+			<li>
+				<h2>Appendix</h2>
+				<ul>
+					<li><a href="logistic.html">Logistic Regression</a></li>
+					<li><a href="map.html">Maximum-a-Posteriori</a></li>
+					<li><a href="newton.html">Newton's Method</a></li>
+					<li><a href="bernoulli.html">Bernoulli Distribution</a></li>
+				</ul>
+			</li>
+		</ul>
+	</div>
+	<!-- end sidebar -->
+</div>
+
+<!-- end page -->
+<div id="footer">
+	<p>&copy; 2018 All Rights Reserved &nbsp;&bull;&nbsp; Edit by <a target="_blank" rel="noopener noreferrer" href="http://github.com/Berchem">Berchem Lin</a>.</p>
+</div>
+</body>
+<script src='https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.4/latest.js?config=TeX-MML-AM_CHTML' async></script>
+</html>

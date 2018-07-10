@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+<title>Side Project</title>
+<meta name="keywords" content="" />
+<meta name="description" content="" />
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<link href="css/style.css" rel="stylesheet" type="text/css" media="screen" />
+<script type="text/x-mathjax-config">
+	MathJax.Hub.Config({
+	  tex2jax: {
+		inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+		processEscapes: true
+	  }
+	});
+  </script>
+  
+  <script type="text/javascript"
+	  src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+  </script>
+</head>
+<body>
+
+<!-- start header -->
+<div id="header">
+	<h1>Logistic Regression</h1>
+</div>
+<!-- end header -->
+<!-- start page -->
+<div id="page">
+	<!-- start content -->
+	<div id="content">
+		<div class="post">
+			<h2 id=likelihood class="title">Maximum Likelihood Estimation</h2>
+			<p class="byline"><small>Retrieved via The Pennsylvania State University, Department of Statistics <a target="_blank" rel="noopener noreferrer" href="https://onlinecourses.science.psu.edu/stat414/node/191/">Online Programs</a> July 9th, 2018</small></p>
+			<div class=entry>
+				<p>
+					&nbsp; &nbsp; <a target="_blank" rel="noopener noreferrer" href="https://en.wikipedia.org/wiki/Bayes%27_theorem"><strong>Bayes' theorem</strong></a> is stated mathematically as the following equation:
+					$$P(A\mid B) = \frac{P(B\mid A)P(A)}{P(B)}$$
+					<br>where $A$ and $B$ are events and $P(B)\neq 0$.
+					<br>&nbsp; &nbsp; $P(A\mid B)$ is a conditional probability: the likelihood of event $A$ occurring given that $B$ is true.
+					<br>&nbsp; &nbsp; $P(B\mid A)$ is also a conditional probability: the likelihood of event $B$ occurring given that $A$ is true.
+					<br>&nbsp; &nbsp; $P(A)$ and $P(B)$ are the probabilities of observing $A$ and $B$ B independently of each other.
+				</p>
+				<p>
+					&nbsp; &nbsp; Driven:
+					\begin{align}
+					P(A\mid B) &= \frac{P(A\cap B)}{P(B)}\\
+					P(B\mid A) &= \frac{P(B\cap A)}{P(A)}\\
+					\end{align}
+					\begin{align}
+					&\because P(A\cap B) = P(B\cap A)\\
+					&\therefore P(A\mid B)P(B) = P(B\mid A)P(A)
+					\end{align}
+					$$\Rightarrow P(A\mid B) = \frac{P(B\mid A)P(A)}{P(B)}$$
+				</p>
+			</div>
+					
+		</div>
+		<div class="post">
+			<h2 id=bayes class="title">Bayes’ theorem</h2>
+			<p class="byline"><small>Retrieved via <a target="_blank" rel="noopener noreferrer" href="https://en.wikipedia.org/">wiki</a> July 9th, 2018</small></p>
+			<div class=entry>
+					<p>
+						&nbsp; &nbsp; <a target="_blank" rel="noopener noreferrer" href="https://en.wikipedia.org/wiki/Bayes%27_theorem"><strong>Bayes' theorem</strong></a> is stated mathematically as the following equation:
+						$$P(A\mid B) = \frac{P(B\mid A)P(A)}{P(B)}$$
+						<br>where $A$ and $B$ are events and $P(B)\neq 0$.
+						<br>&nbsp; &nbsp; $P(A\mid B)$ is a conditional probability: the likelihood of event $A$ occurring given that $B$ is true.
+						<br>&nbsp; &nbsp; $P(B\mid A)$ is also a conditional probability: the likelihood of event $B$ occurring given that $A$ is true.
+						<br>&nbsp; &nbsp; $P(A)$ and $P(B)$ are the probabilities of observing $A$ and $B$ B independently of each other.
+					</p>
+					<p>
+						&nbsp; &nbsp; Driven:
+						\begin{align}
+						P(A\mid B) &= \frac{P(A\cap B)}{P(B)}\\
+						P(B\mid A) &= \frac{P(B\cap A)}{P(A)}\\
+						\end{align}
+						\begin{align}
+						&\because P(A\cap B) = P(B\cap A)\\
+						&\therefore P(A\mid B)P(B) = P(B\mid A)P(A)
+						\end{align}
+						$$\Rightarrow P(A\mid B) = \frac{P(B\mid A)P(A)}{P(B)}$$
+					</p>
+			</div>
+			
+		</div>
+	</div>
+	<!-- end content -->
+	<!-- start sidebar -->
+	<div id="sidebar">
+		<ul>
+			<li>
+				<h2>Categories</h2>
+				<ul>
+					<li><a href="introdution.html">What's Logistic Regression</a></li>
+					<li><a href="result.html">Java Result versus Scikit-learn</a></li>
+					<li><a href="jupyter-notebook.html">Algorithm for Logistic Regression</a></li>
+					<li><a href="class_diagram_current.html">Class Diagram</a></li>
+					<li><a href="technique.html">Technique for Building</a></li>
+				</ul>
+			</li>
+			<li>
+				<h2>Appendix</h2>
+				<ul>
+					<li><a href="logistic.html">Logistic Regression</a></li>
+					<li><a href="#" data-toggle="collapse" data-target="#map">Maximum-a-Posteriori</a></li>
+					<div id="map" class=collapse>
+						<li><a href="#likelihood">&nbsp; &nbsp; &nbsp; &nbsp; Maximum Likelihood Estimation</a></li>
+						<li><a href="#bayes">&nbsp; &nbsp; &nbsp; &nbsp; Bayes’ theorem</a></li>
+					</div>
+					<li><a href="newton.html">Newton's Method</a></li>
+					<li><a href="bernoulli.html">Bernoulli Distribution</a></li>
+				</ul>
+			</li>
+		</ul>
+	</div>
+	<!-- end sidebar -->
+</div>
+
+<!-- end page -->
+<div id="footer">
+	<p>&copy; 2018 All Rights Reserved &nbsp;&bull;&nbsp; Edit by <a target="_blank" rel="noopener noreferrer" href="http://github.com/Berchem">Berchem Lin</a>.</p>
+</div>
+</body>
+<script type="text/javascript"
+	  src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+</html>

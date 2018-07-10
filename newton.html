@@ -1,0 +1,385 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+	<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+	<title>Side Project</title>
+	<meta name="keywords" content="" />
+	<meta name="description" content="" />
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+	<link href="css/style.css" rel="stylesheet" type="text/css" media="screen" />
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
+	<script language="javascript">
+		/* Define the Animation class */
+		function Animation(frames, img_id, slider_id, interval, loop_select_id) {
+			this.img_id = img_id;
+			this.slider_id = slider_id;
+			this.loop_select_id = loop_select_id;
+			this.interval = interval;
+			this.current_frame = 0;
+			this.direction = 0;
+			this.timer = null;
+			this.frames = new Array(frames.length);
+
+			for (var i = 0; i < frames.length; i++) {
+				this.frames[i] = new Image();
+				this.frames[i].src = frames[i];
+			}
+			document.getElementById(this.slider_id).max = this.frames.length - 1;
+			this.set_frame(this.current_frame);
+		}
+
+		Animation.prototype.get_loop_state = function () {
+			var button_group = document[this.loop_select_id].state;
+			for (var i = 0; i < button_group.length; i++) {
+				var button = button_group[i];
+				if (button.checked) {
+					return button.value;
+				}
+			}
+			return undefined;
+		}
+
+		Animation.prototype.set_frame = function (frame) {
+			this.current_frame = frame;
+			document.getElementById(this.img_id).src =
+				this.frames[this.current_frame].src;
+			document.getElementById(this.slider_id).value = this.current_frame;
+		}
+
+		Animation.prototype.next_frame = function () {
+			this.set_frame(Math.min(this.frames.length - 1, this.current_frame + 1));
+		}
+
+		Animation.prototype.previous_frame = function () {
+			this.set_frame(Math.max(0, this.current_frame - 1));
+		}
+
+		Animation.prototype.first_frame = function () {
+			this.set_frame(0);
+		}
+
+		Animation.prototype.last_frame = function () {
+			this.set_frame(this.frames.length - 1);
+		}
+
+		Animation.prototype.slower = function () {
+			this.interval /= 0.7;
+			if (this.direction > 0) { this.play_animation(); }
+			else if (this.direction < 0) { this.reverse_animation(); }
+		}
+
+		Animation.prototype.faster = function () {
+			this.interval *= 0.7;
+			if (this.direction > 0) { this.play_animation(); }
+			else if (this.direction < 0) { this.reverse_animation(); }
+		}
+
+		Animation.prototype.anim_step_forward = function () {
+			this.current_frame += 1;
+			if (this.current_frame < this.frames.length) {
+				this.set_frame(this.current_frame);
+			} else {
+				var loop_state = this.get_loop_state();
+				if (loop_state == "loop") {
+					this.first_frame();
+				} else if (loop_state == "reflect") {
+					this.last_frame();
+					this.reverse_animation();
+				} else {
+					this.pause_animation();
+					this.last_frame();
+				}
+			}
+		}
+
+		Animation.prototype.anim_step_reverse = function () {
+			this.current_frame -= 1;
+			if (this.current_frame >= 0) {
+				this.set_frame(this.current_frame);
+			} else {
+				var loop_state = this.get_loop_state();
+				if (loop_state == "loop") {
+					this.last_frame();
+				} else if (loop_state == "reflect") {
+					this.first_frame();
+					this.play_animation();
+				} else {
+					this.pause_animation();
+					this.first_frame();
+				}
+			}
+		}
+
+		Animation.prototype.pause_animation = function () {
+			this.direction = 0;
+			if (this.timer) {
+				clearInterval(this.timer);
+				this.timer = null;
+			}
+		}
+
+		Animation.prototype.play_animation = function () {
+			this.pause_animation();
+			this.direction = 1;
+			var t = this;
+			if (!this.timer) this.timer = setInterval(function () {
+				t.anim_step_forward();
+			}, this.interval);
+		}
+
+		Animation.prototype.reverse_animation = function () {
+			this.pause_animation();
+			this.direction = -1;
+			var t = this;
+			if (!this.timer) this.timer = setInterval(function () {
+				t.anim_step_reverse();
+			}, this.interval);
+		}
+	</script>
+	<script type="text/x-mathjax-config">
+		MathJax.Hub.Config({
+		  tex2jax: {
+			inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+			processEscapes: true
+		  }
+		});
+	  </script>
+	<!-- <script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script> -->
+</head>
+
+<body>
+	<style>
+		.animation::-webkit-scrollbar-track {
+			/* -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3); */
+			/* border: -1 solid none; */
+			border-radius: 5px;
+			background-color: #293340;
+		}
+
+		.animation::-webkit-scrollbar {
+			width: 10px;
+			background-color: #293340;
+		}
+
+		#animation::-webkit-scrollbar-thumb {
+			border-radius: 5px;
+			/* -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,.3); */
+			background-color: #445161;
+		}
+
+		button {
+			-moz-box-shadow: inset 0px 1px 0px 0px #54a3f7;
+			-webkit-box-shadow: inset 0px 1px 0px 0px #54a3f7;
+			box-shadow: inset 0px 1px 0px 0px #54a3f7;
+			background-color: #4c7f99;
+			-moz-border-radius: 3px;
+			-webkit-border-radius: 3px;
+			border-radius: 3px;
+			border: 1px solid #124d77;
+			display: inline-block;
+			cursor: pointer;
+			color: #ffffff;
+			font-family: Verdana;
+			font-size: 16px;
+			padding: 12px 16px;
+			text-decoration: none;
+			text-shadow: 0px 1px 0px #154682;
+
+		}
+
+		.anim_control {
+			margin-top: 10px;
+			color: #ffffff;
+		}
+
+		/* The slider itself */
+		#_anim_slider_newton {
+			/* background: #4c7f99; */
+			margin-bottom: 20px;
+			border-radius: 3px;
+			-webkit-appearance: none;  /* Override default CSS styles */
+    		appearance: none;
+ 		    width: 100%; /* Full-width */
+		    height: 5px; /* Specified height */
+		    background: #d3d3d3; /* Grey background */
+		    outline: none; /* Remove outline */
+		    opacity: 0.66; /* Set transparency (for mouse-over effects on hover) */
+		    -webkit-transition: .2s; /* 0.2 seconds transition on hover */
+ 		    transition: opacity .2s;
+		}
+
+		/* Mouse-over effects */
+		#_anim_slider_newton:hover {
+    		opacity: 1; /* Fully shown on mouse-over */
+		}
+
+		/* The slider handle (use -webkit- (Chrome, Opera, Safari, Edge) and -moz- (Firefox) to override default look) */ 
+		#_anim_slider_newton::-webkit-slider-thumb {
+    		-webkit-appearance: none; /* Override default look */
+    		appearance: none;
+    		width: 15px; /* Set a specific slider handle width */
+			height: 15px; /* Slider handle height */
+			border-radius: 50%;
+    		background: #4c7f99; /* Green background */
+    		cursor: pointer; /* Cursor on hover */
+		}
+
+		#_anim_slider_newton::-moz-range-thumb {
+    		width: 5px; /* Set a specific slider handle width */
+    		height: 5px; /* Slider handle height */
+    		background: #4c7f99; /* Green background */
+    		cursor: pointer; /* Cursor on hover */
+		}
+	</style>
+	<!-- start header -->
+	<div id="header">
+		<h1>Logistic Regression</h1>
+	</div>
+	<!-- end header -->
+	<!-- start page -->
+	<div id="page">
+		<!-- start content -->
+		<div id="content">
+			<div class="post">
+				<h2 class="title">Newton's Method</h2>
+				<p class="byline">
+					<small>Modified on July 6th, 2018 by
+						<a target="_blank" rel="noopener noreferrer" href="http://github.com/Berchem">Berchem</a>
+					</small>
+				</p>
+				<div class="entry">
+					<p>
+						&nbsp; &nbsp;
+						<a target="_blank" rel="noopener noreferrer" href="https://en.wikipedia.org/wiki/Newton%27s_method">
+							<strong>Newton's method</strong>
+						</a> is a method for finding successively better approximations to the roots (or zeroes) of a real-valued function. It is
+						one example of a root-finding algorithm. The idea of the method is as follows: 
+						\begin{align} 
+							&\text{1. one starts with an initial guess which is reasonably close to the true root, }x_i\\ 
+							&\text{2. then the function is approximated by its tangent line, } y_i = f^\prime(x_i)x_i + b\\ 
+							&\text{3. and one computes the $x$-intercept of this tangent line.}
+						\end{align} 
+						&nbsp; &nbsp; This $x\text{-intercept}$ will typically be a better approximation to the function's root
+						than the original guess.
+					</p>
+					<p>
+						&nbsp; &nbsp; Suppose $f : [a, b] → ℝ$ is a differentiable function defined on the interval $[a, b]$ with values in the real
+						numbers $ℝ$. The formula for converging on the root can be easily derived. Suppose we have some current approximation
+						$x_i$. Then we can derive the formula for a better approximation, $x_i + 1$ by referring to the animation as below.
+						The equation of the tangent line to the curve $y = f(x)$ at the point $x = x_i$ is $$y = f^\prime(x_i)(x - x_i) + f(x_i)$$
+					</p>
+					<p>
+						The $x\text{-intercept}$ of this line is then used as the next approximation to the root, x_{i + 1}. In other words, setting
+						$y$ to zero and $x$ to $x_{i + 1}$ gives $$0 = f^\prime(x_i)(x - x_i) + f(x_i)$$
+					</p>
+					<p>
+						Sloving for $x_{i + 1}$ gives $$x_{i+1} = x_i - \frac{f(x_i)}{f^\prime(x_i)}$$
+					</p>
+				</div>
+				<div class="animation" align="center">
+					<img id="_anim_img_newton">
+					<br>
+					<input id="_anim_slider_newton" type="range" style="width:450px" name="points" min="0" max="1" step="1"
+					 value="0" onchange="anim_newton.set_frame(parseInt(this.value));"></input>
+					<br>
+					<button onclick="anim_newton.slower()">
+						<i class="fa fa-minus"></i>
+					</button>
+					<button onclick="anim_newton.first_frame()">
+						<i class="fa fa-fast-backward"></i>
+					</button>
+					<button onclick="anim_newton.previous_frame()">
+						<i class="fa fa-step-backward"></i>
+					</button>
+					<button onclick="anim_newton.reverse_animation()">
+						<i class="fa fa-play fa-flip-horizontal"></i>
+					</button>
+					<button onclick="anim_newton.pause_animation()">
+						<i class="fa fa-pause">
+						</i>
+					</button>
+					<button onclick="anim_newton.play_animation()">
+						<i class="fa fa-play"></i>
+					</button>
+					<button onclick="anim_newton.next_frame()">
+						<i class="fa fa-step-forward">
+						</i>
+					</button>
+					<button onclick="anim_newton.last_frame()">
+						<i class="fa fa-fast-forward">
+						</i>
+					</button>
+					<button onclick="anim_newton.faster()">
+						<i class="fa fa-plus"></i>
+					</button>
+					<form action="#n" name="_anim_loop_select_newton" class="anim_control">
+						<input class=checkmark type="radio" name="state" value="once"> Once </input>
+						<input class=checkmark type="radio" name="state" value="loop" checked> Loop </input>
+						<input class=checkmark type="radio" name="state" value="reflect"> Reflect </input>
+					</form>
+				</div>
+
+			</div>
+		</div>
+		<!-- end content -->
+		<!-- start sidebar -->
+		<div id="sidebar">
+			<ul>
+				<li>
+					<h2>Categories</h2>
+					<ul>
+						<li><a href="introdution.html">What's Logistic Regression</a></li>
+						<li><a href="result.html">Java Result versus Scikit-learn</a></li>
+						<li><a href="jupyter-notebook.html">Algorithm for Logistic Regression</a></li>
+						<li><a href="class_diagram_current.html">Class Diagram</a></li>
+						<li><a href="technique.html">Technique for Building</a></li>
+					</ul>
+				</li>
+				<li>
+					<h2>Appendix</h2>
+					<ul>
+						<li><a href="logistic.html">Logistic Regression</a></li>
+						<li><a href="map.html">Maximum-a-Posteriori</a></li>
+						<li><a href="newton.html">Newton's Method</a></li>
+						<li><a href="bernoulli.html">Bernoulli Distribution</a></li>
+					</ul>
+				</li>
+			</ul>
+		</div>
+		<!-- end sidebar -->
+	</div>
+
+	<!-- end page -->
+	<div id="footer">
+		<p>&copy; 2018 All Rights Reserved &nbsp;&bull;&nbsp; Edit by
+			<a target="_blank" rel="noopener noreferrer" href="http://github.com/Berchem">Berchem Lin</a>.</p>
+	</div>
+	<script language="javascript">
+			/* Instantiate the Animation class. */
+			/* The IDs given should match those used in the template above. */
+			(function () {
+				var img_id = "_anim_img_newton";
+				var slider_id = "_anim_slider_newton";
+				var loop_select_id = "_anim_loop_select_newton";
+				var frames = new Array(33);
+
+				for (var i = 0; i < 33; i++) {
+					frames[i] = "basic_animation_frames/frame" + ("0000000" + i).slice(-7) + ".png";
+				}
+
+
+				/* set a timeout to make sure all the above elements are created before
+				   the object is initialized. */
+				setTimeout(function () {
+					anim_newton = new Animation(frames, img_id, slider_id, 300,
+						loop_select_id);
+				}, 0);
+			})()
+	</script>
+	<script src='https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.4/latest.js?config=TeX-MML-AM_CHTML' async></script>
+</body>
+
+</html>
