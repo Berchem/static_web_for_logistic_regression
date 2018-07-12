@@ -97,11 +97,12 @@ hr {
 /* Header */
 
 #header {
-	width: 890px;
+	width: 80%;
 	height: 200px;
 	margin: 0 auto;
-	background: url(../images/img10-2.jpg) no-repeat left top;
-	
+	background: url(../images/java-logo-vector.png) no-repeat left top;
+	background-position: 0% 0;	
+	background-size: 16.5%;
 	/* z-index: -1; */
 }
 
@@ -113,9 +114,10 @@ hr {
 
 #header h1 {
 	color: #FFFFFF;
-	font-size: 75px;
+	font-size: 99px;
 	padding: 30px 20px;
-	margin-right: -70px;
+	margin-right: -0.6%;
+	margin-top: 1.8%;
 }
 
 #header p {
@@ -131,7 +133,7 @@ hr {
 /* Page */
 
 #page {
-	width: 73%;
+	width: 80%;
 	/* height: 100px; */
 	margin: 0 auto;
 }
@@ -140,16 +142,16 @@ hr {
 
 #content {
 	float: right;
-	width: 67%;
-	height: 600px;
-	min-height: 350px;
+	width: 72%;
+	height: 590px;
+	/* min-height: 350px; */
 	margin-top: -20px;
 	margin-bottom: 30px;
 	padding: 30px 20px;
 	background: #293340;
 	border: 10px solid #3a65a0;
 	overflow-y: auto;
-
+	overflow-x: hidden;
 }
 
 #content::-webkit-scrollbar-track {
@@ -446,13 +448,14 @@ hr {
 
 #sidebar {
 	float: left;
-	width: 300px;
+	width: 25%;
 	/* height: 350px; */
-	max-height: 550px;
+	max-height: 520px;
 	padding-top: 0px;
 	color: #415172;
 	overflow-y: auto;
 	overflow-x: hidden;
+	margin-top: 1%;
 	/* border: 1px solid #0F0F0F; */
 	/* position: fixed; */
 	/* z-index:  */
@@ -478,9 +481,9 @@ hr {
 #sidebar h2 {
 	margin: 0;
 	height: 35px;
-	width: 300px;
+	width: 100%;
 	padding: 8px 0px 10px 13px;
-	background: url(../images/img07.gif) no-repeat left top;
+	background: url(../images/img07.gif) repeat-x left top;
 	font-family: Georgia, "Times New Roman", Times, serif;
 	font-size: 18px;
 	color: #CFBF66;
@@ -637,4 +640,10 @@ th, td{
 
 .except{
 	color: #a7b126;
+}
+
+.gv{
+	color:lightskyblue;
+	font-family: consolas;
+	font-style: italic;
 }
