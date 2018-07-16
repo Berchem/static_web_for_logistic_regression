@@ -273,6 +273,35 @@
 					<!-- Trigger the Modal - "BINARY" -->
 					<img id="result-00" src="images/binary.png" alt="binary" width=100%>
 				</div>
+				<!-- lambda = 1e-1
+				exlpantory variables: intercept	gre	gpa	rank
+				w in python         : -3.0446	0.0022	0.6820	-0.5698
+				w in java           : -3.0446	0.0022	0.6820	-0.5698 -->
+
+				<!-- lambda = 1e-2
+				exlpantory variables: intercept	gre	gpa	rank
+				w in python         : -3.4038	0.0023	0.7663	-0.5611
+				w in java           : -3.4039	0.0023	0.7663	-0.5611 -->
+
+				<!-- lambda = 1e-3
+				exlpantory variables: intercept	gre	gpa	rank
+				w in python         : -3.4449	0.0023	0.7759	-0.5601
+				w in java           : -3.4449	0.0023	0.7759	-0.5601 -->
+
+				<!-- lambda = 1e+1
+				exlpantory variables: intercept	gre	gpa	rank
+				w in python         : -0.2802	0.0015	0.0031	-0.5767
+				w in java           : -0.2802	0.0015	0.0031	-0.5767 -->
+
+				<!-- lambda = 1e+2
+				exlpantory variables: intercept	gre	gpa	rank
+				w in python         : -0.2802	0.0015	0.0031	-0.5767
+				w in java           : -0.2802	0.0015	0.0031	-0.5767 -->
+
+				<!-- lambda = 1e+3
+				exlpantory variables: intercept	gre	gpa	rank
+				weight via python   : -0.0083	-0.0008	-0.0142	-0.0594
+				weight via java     : -0.0083	-0.0008	-0.0142	-0.0594 -->
 			</div>
 
 			<!-- The Modal -->
@@ -287,6 +316,31 @@
 
 					<!-- Modal Caption (Image Text) -->
 					<div id="caption"></div>
+					<!-- <div class="model-content" style="margin:-120px auto">
+						<table>
+							<tr>
+								<th>exlpantory variables:</th>
+								<th>intercept</th>
+								<th>gre</th>
+								<th>gpa</th>
+								<th>rank</th>
+							</tr>
+							<tr>
+								<td>w in python :</td>
+								<td>-1.5125</td>
+								<td>0.0019</td>
+								<td>0.3196</td>
+								<td>-0.6056</td>
+							</tr>
+							<tr>
+								<td>w in java :</td>
+								<td>-1.5125</td>
+								<td>0.0019</td>
+								<td>0.3196</td>
+								<td>-0.6056</td>
+							</tr>
+						</table>
+					</div> -->
 				</div>
 
 
@@ -338,13 +392,13 @@
 					<h2>Appendix</h2>
 					<ul>
 						<li><a href="logistic.html">Logistic Regression</a></li>
-						<li><a href="#" data-toggle="collapse" data-target="#map">Maximum-a-Posteriori (2)</a></li>
+						<li><a href="#" data-toggle="collapse" data-target="#map">Maximum-a-Posteriori (3)</a></li>
 						<div id="map" class=collapse>
 							<li><a href="map.html#likelihood">&nbsp; &nbsp; &nbsp; &nbsp; Maximum Likelihood Estimation</a></li>
 							<li><a href="map.html#bayes">&nbsp; &nbsp; &nbsp; &nbsp; Bayes’ theorem</a></li>
+							<li><a href="map.html#posteriori">&nbsp; &nbsp; &nbsp; &nbsp; Posterior Probability</a></li>
 						</div>
 						<li><a href="newton.html">Newton's Method</a></li>
-						<li><a href="bernoulli.html">Bernoulli Distribution</a></li>
 					</ul>
 				</li>
 			</ul>

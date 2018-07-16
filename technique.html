@@ -613,10 +613,9 @@
 				<div class=pseudo>
 					<span class=import>import</span> java.io.FileNotFoundException;
 					<br><span class=import>import</span> java.io.UnsupportedEncodingException;
-					<!-- <br>
+					<br>
 					<br><span class=import>public class</span> <span class=class_color>unitest</span> <span class=import>extends</span> <span class=class_color>content_variables</span> {
-					<br>	
-					<br><span class=shebang>//&nbsp; static void show1darray(double[] A) {</span>
+					<!-- <br><span class=shebang>//&nbsp; static void show1darray(double[] A) {</span>
 					<br><span class=shebang>//&nbsp; &nbsp; for (int i = 0; i < A.length; i++)</span>
 					<br><span class=shebang>//&nbsp; &nbsp; &nbsp; System.out.printf("%.4f%s", A[i], (i == A.length - 1) ? "\n" : ", ");</span>
 					<br><span class=shebang>//&nbsp; }</span>
@@ -654,8 +653,8 @@
 					<br>&nbsp; &nbsp; &nbsp; &nbsp; <span class=import>return</span> <span class=v>lr</span>;
 					<br>&nbsp; &nbsp; }</p>
 					<br>
-					<br>&nbsp; &nbsp; <span class=import>public static void</span> main(<span class=class_color>String</span>[] <span class=arg>args</span>) 
-					<br>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <span class=import>throws</span> <span class=class_color>FileNotFoundException</span>, <span class=class_color>UnsupportedEncodingException</span>  {
+					<br>&nbsp; &nbsp; <span class=import>public static void</span> <a href=# data-toggle="collapse" data-target="#main">main</a>(<span class=class_color>String</span>[] <span class=arg>args</span>) 
+					<div id=main class=collapse>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <span class=import>throws</span> <span class=class_color>FileNotFoundException</span>, <span class=class_color>UnsupportedEncodingException</span>  {
 					<br>&nbsp; &nbsp; &nbsp; &nbsp; <span class=shebang>//define source and distribution</span>
 					<br>&nbsp; &nbsp; &nbsp; &nbsp; <span class=class_color>String</span> <span class=import>src</span> = <span class=arg>args</span>[0];
 					<br>&nbsp; &nbsp; &nbsp; &nbsp; <span class=class_color>String</span> <span class=import>dst</span> = <span class=arg>args</span>[1];
@@ -713,7 +712,7 @@
 					<br>&nbsp; &nbsp; &nbsp; &nbsp; show1darray(((newton) lr).get_weight()); -->
 					<br>&nbsp; &nbsp; &nbsp; &nbsp; <span class=gv>load</span>.<span class=m style="font-style: normal">write</span>(((<span class=class_color>newton</span>) <span class=gv>lr</span>).<span class=m style="font-style: normal">get_weight</span>(), <span class=v>dst</span>);
 					<br>
-					<br>&nbsp; &nbsp; }
+					<br>&nbsp; &nbsp; }</div>
 					<br>}
 				</div>
 			</div>
@@ -721,8 +720,9 @@
 
 		<div class="post">
 			<h1 id="summary" class="title">Summary</h1>
-			<p class="byline"><small>Retrieved via <a target="_blank" rel="noopener noreferrer" href="https://en.wikipedia.org/">wiki</a> | <a target="_blank" rel="noopener noreferrer" href="http://scikit-learn.org/stable/modules/generated/sklearn.linear_model.LogisticRegression.html">scikit-learn</a> July 3rd, 2018</small></p>
+			<p class="byline"><small>Edited on July 16th, 2018 by <a target="_blank" rel="noopener noreferrer" href="http://github.com/Berchem">Berchem</a></small></p>
 			<div class="entry">
+				<p>Although it looks like there are not many technologies used in this project, but we just need to organize some basic program and both a little calculus and linear algebra. Then we can building an algorithm for logistic regression in java.</p>
 				<strong>Mathematics</strong>
 				<p>&nbsp; &nbsp; a little Calculus</p>
 				<p>&nbsp; &nbsp; a little linear algebra</p>
@@ -790,13 +790,13 @@
 				<h2>Appendix</h2>
 				<ul>
 					<li><a href="logistic.html">Logistic Regression</a></li>
-					<li><a href="#" data-toggle="collapse" data-target="#map">Maximum-a-Posteriori (2)</a></li>
+					<li><a href="#" data-toggle="collapse" data-target="#map">Maximum-a-Posteriori (3)</a></li>
 					<div id="map" class=collapse>
 						<li><a href="map.html#likelihood">&nbsp; &nbsp; &nbsp; &nbsp; Maximum Likelihood Estimation</a></li>
 						<li><a href="map.html#bayes">&nbsp; &nbsp; &nbsp; &nbsp; Bayes’ theorem</a></li>
+						<li><a href="map.html#posteriori">&nbsp; &nbsp; &nbsp; &nbsp; Posterior Probability</a></li>
 					</div>
 					<li><a href="newton.html">Newton's Method</a></li>
-					<li><a href="bernoulli.html">Bernoulli Distribution</a></li>
 				</ul>
 			</li>
 		</ul>

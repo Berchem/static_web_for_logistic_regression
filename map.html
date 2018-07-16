@@ -38,25 +38,34 @@
 			<p class="byline"><small>Retrieved via The Pennsylvania State University, Department of Statistics <a target="_blank" rel="noopener noreferrer" href="https://onlinecourses.science.psu.edu/stat414/node/191/">Online Programs</a> July 9th, 2018</small></p>
 			<div class=entry>
 				<p>
-					&nbsp; &nbsp; <a target="_blank" rel="noopener noreferrer" href="https://en.wikipedia.org/wiki/Bayes%27_theorem"><strong>Bayes' theorem</strong></a> is stated mathematically as the following equation:
-					$$P(A\mid B) = \frac{P(B\mid A)P(A)}{P(B)}$$
-					<br>where $A$ and $B$ are events and $P(B)\neq 0$.
-					<br>&nbsp; &nbsp; $P(A\mid B)$ is a conditional probability: the likelihood of event $A$ occurring given that $B$ is true.
-					<br>&nbsp; &nbsp; $P(B\mid A)$ is also a conditional probability: the likelihood of event $B$ occurring given that $A$ is true.
-					<br>&nbsp; &nbsp; $P(A)$ and $P(B)$ are the probabilities of observing $A$ and $B$ B independently of each other.
+					&nbsp; &nbsp; Let a data set $\mathbf{X} = [\mathbf{x}_1, \mathbf{x}_2, ..., \mathbf{x}_n]$, 
+					be a random sample from a distribution that depends on one or more unknown parameters 
+					$\mathbf{\theta}$ with probability function $f(\mathbf{x}_i\mid \mathbf{\theta})$, the likelihood function is:
+					$$L(\mathbf{\theta}) = \Pi f(\mathbf{x}_i\mid \mathbf{\theta})$$
 				</p>
 				<p>
-					&nbsp; &nbsp; Driven:
-					\begin{align}
-					P(A\mid B) &= \frac{P(A\cap B)}{P(B)}\\
-					P(B\mid A) &= \frac{P(B\cap A)}{P(A)}\\
-					\end{align}
-					\begin{align}
-					&\because P(A\cap B) = P(B\cap A)\\
-					&\therefore P(A\mid B)P(B) = P(B\mid A)P(A)
-					\end{align}
-					$$\Rightarrow P(A\mid B) = \frac{P(B\mid A)P(A)}{P(B)}$$
+					&nbsp; &nbsp; The equality uses the uppercase pi as the shorthand mathematical notation of a product of indexed terms. 
+					Our primary goal here will be to find a point estimator $u(\mathbf{x}_1, \mathbf{x}_2,..., \mathbf{x}_n)$, 
+					such that $u(\mathbf{x}_1, \mathbf{x}_2,..., \mathbf{x}_n)$ is a "good" point estimate of $\mathbf{\theta}$. 
+					The value of $\mathbf{\theta}$ that maximizesthe likelihood of getting the data we observed would be reasonable that 
+					a good estimate of the unknown parameter $\theta$. Because the "random sample" were independent,  
+					we could use the joint probability mass (or density) function of $\mathbf{X}$, to implement the method in practice.
 				</p>
+				
+				<img id=log_func src="./images/log_func.png">
+				<p>
+					&nbsp; &nbsp; In order to implement the method of maximum likelihood, 
+					we need to find the p that maximizes the likelihood $L(\theta)$. We need to put on our calculus hats now, 
+					since in order to maximize the function, we are going to need to differentiate the likelihood function with respect to $\theta$. 
+					In doing so, we'll use a "trick" that often makes the differentiation a bit easier.  
+					Note that the natural logarithm is an <strong><a target="_blank" rel="noopener noreferrer" href="http://mathworld.wolfram.com/StrictlyIncreasingFunction.html">Strictly Increasing Function</a></strong> of $x$.	
+					
+				</p>
+				
+				<p>&nbsp; &nbsp; The log-likelihood function is: 
+
+				$$\text{log}L(\theta)=\sum \text{log}f(\mathbf{x}_i\mid \mathbf{\theta})$$</p>
+				
 			</div>
 					
 		</div>
@@ -65,7 +74,7 @@
 			<p class="byline"><small>Retrieved via <a target="_blank" rel="noopener noreferrer" href="https://en.wikipedia.org/">wiki</a> July 9th, 2018</small></p>
 			<div class=entry>
 					<p>
-						&nbsp; &nbsp; <a target="_blank" rel="noopener noreferrer" href="https://en.wikipedia.org/wiki/Bayes%27_theorem"><strong>Bayes' theorem</strong></a> is stated mathematically as the following equation:
+						&nbsp; &nbsp; <strong><a target="_blank" rel="noopener noreferrer" href="https://en.wikipedia.org/wiki/Bayes%27_theorem">Bayes' theorem</a></strong> is stated mathematically as the following equation:
 						$$P(A\mid B) = \frac{P(B\mid A)P(A)}{P(B)}$$
 						<br>where $A$ and $B$ are events and $P(B)\neq 0$.
 						<br>&nbsp; &nbsp; $P(A\mid B)$ is a conditional probability: the likelihood of event $A$ occurring given that $B$ is true.
@@ -133,13 +142,13 @@
 				<h2>Appendix</h2>
 				<ul>
 					<li><a href="logistic.html">Logistic Regression</a></li>
-					<li><a href="#" data-toggle="collapse" data-target="#map">Maximum-a-Posteriori (2)</a></li>
+					<li><a href="#" data-toggle="collapse" data-target="#map">Maximum-a-Posteriori (3)</a></li>
 					<div id="map" class=collapse>
-						<li><a href="#likelihood">&nbsp; &nbsp; &nbsp; &nbsp; Maximum Likelihood Estimation</a></li>
-						<li><a href="#bayes">&nbsp; &nbsp; &nbsp; &nbsp; Bayes’ theorem</a></li>
+						<li><a href="map.html#likelihood">&nbsp; &nbsp; &nbsp; &nbsp; Maximum Likelihood Estimation</a></li>
+						<li><a href="map.html#bayes">&nbsp; &nbsp; &nbsp; &nbsp; Bayes’ theorem</a></li>
+						<li><a href="map.html#posteriori">&nbsp; &nbsp; &nbsp; &nbsp; Posterior Probability</a></li>
 					</div>
 					<li><a href="newton.html">Newton's Method</a></li>
-					<li><a href="bernoulli.html">Bernoulli Distribution</a></li>
 				</ul>
 			</li>
 		</ul>
