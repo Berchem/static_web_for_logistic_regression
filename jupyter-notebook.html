@@ -96,12 +96,12 @@
 				<p>
 					Newton step is
 					\begin{align}
-						\mathbf{w}_{new} &= \mathbf{w}_{old} + (\mathbf{X}\mathbf{A}\mathbf{X}^T + \lambda\mathbf{I}^{-1})(\sum^{n}_{i=1}(1-\frac{1}{1+e^{-y_i\mathbf{w}^T\mathbf{x}_i}})y_i\mathbf{x}_i - \lambda\mathbf{w})\\
-						&=(\mathbf{X}\mathbf{A}\mathbf{X}^T + \lambda\mathbf{I}^{-1})\mathbf{X}\mathbf{A}(\mathbf{X}^T\mathbf{w}_{old}+[\frac{(1-\frac{1}{1+e^{-y_i\mathbf{w}^T\mathbf{x}_i}})y_i}{a_{ii}}])\\
+						\mathbf{w}_{new} &= \mathbf{w}_{old} + (\mathbf{X}\mathbf{A}\mathbf{X}^T + \lambda\mathbf{I}^{-1})^{-1} (\sum^{n}_{i=1}(1-\frac{1}{1+e^{-y_i\mathbf{w}^T\mathbf{x}_i}})y_i\mathbf{x}_i - \lambda\mathbf{w})\\
+						&=(\mathbf{X}\mathbf{A}\mathbf{X}^T + \lambda\mathbf{I}^{-1})^{-1} \mathbf{X}\mathbf{A}(\mathbf{X}^T\mathbf{w}_{old}+[\frac{(1-\frac{1}{1+e^{-y_i\mathbf{w}^T\mathbf{x}_i}})y_i}{a_{ii}}])\\
 						\text{if we define} \\
 						&z_i = \mathbf{x}_i^T\mathbf{w}_{old} + \frac{(1-\frac{1}{1+e^{-y_i\mathbf{w}^T\mathbf{x}_i}})y_i}{a_{ii}}\\
 						\\
-						\Rightarrow \mathbf{w}_{new} &=(\mathbf{X}\mathbf{A}\mathbf{X}^T + \lambda\mathbf{I}^{-1})\mathbf{X}\mathbf{A}\mathbf{z}
+						\Rightarrow \mathbf{w}_{new} &=(\mathbf{X}\mathbf{A}\mathbf{X}^T + \lambda\mathbf{I}^{-1})^{-1} \mathbf{X}\mathbf{A}\mathbf{z}
 					\end{align}
 
 			</div>
@@ -113,7 +113,7 @@
 	<div id="sidebar">
 		<ul>
 			<li>
-				<h2>Categories</h2>
+				<h2>Topics</h2>
 				<ul>
 					<li><a href="#" data-toggle=collapse data-target="#introduct">What's Logistic Regression (3)</a></a></li>
 					<div id=introduct class=collapse>

@@ -3,13 +3,23 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <meta http-equiv="content-type" content="text/html; charset=utf-8" />
-<title>Side Project</title>
+<title>Front Page</title>
 <meta name="keywords" content="" />
 <meta name="description" content="" />
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 <link href="css/style.css" rel="stylesheet" type="text/css" media="screen" />
+<script>
+		$(document).ready(function(){
+		
+			$("#next").click(function(){
+				$(".s-header").css("color", "white").slideUp(1200)
+		
+			});
+		
+		});
+</script>
 <script type="text/x-mathjax-config">
 	MathJax.Hub.Config({
 	  tex2jax: {
@@ -23,11 +33,40 @@
 	  src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
   </script>
 </head>
-<body>
+<body style="overflow: hidden;">
+	
+  <!-- header
+    ================================================== -->
+    <header class="s-header">
 
+		<div id="header-logo">
+			<img href="FrontPage.html" src="images/eclipse.png" width="590px">
+		</div>
+
+		<div id="theme">
+			<h1>Building an Algorithm for <br>Logistic Regression in Java</h1>
+		</div>
+
+		<div id="saying">
+			<p>I am always ready to learn although I do not always like being taught.</p>
+			<p align="right">—&mdash;&mdash; Winston Churchill</p>
+		</div>
+		
+		<div id="next">
+			<p style="color:brown"><a href=#>STARTED</a></p>
+		</div>
+		
+		<div id="footer">
+			<p>&copy; 2018 All Rights Reserved &nbsp;&bull;&nbsp; Edit by <a target="_blank" rel="noopener noreferrer" href="http://github.com/Berchem">Berchem Lin</a>.</p>
+		</div>
+	</header> <!-- end s-header -->
+	
+
+
+	
 <!-- start header -->
 <div id="header">
-	<h1>Logistic Regression</h1>
+	<a href="FrontPage.html"><h1>Logistic Regression</h1></a>
 </div>
 <!-- end header -->
 <!-- start page -->

@@ -96,13 +96,49 @@
 			</div>
 			
 		</div>
+		
+		<div class="post">
+			<h2 id=posteriori class="title">Posterior Probability</h2>
+			<p class="byline"><small>Retrieved via <a target="_blank" rel="noopener noreferrer" href="https://en.wikipedia.org/">wiki</a> July 16th, 2018</small></p>
+			<div class=entry>
+				<p>
+					&nbsp; &nbsp; <strong><a target="_blank" rel="noopener noreferrer" href="https://en.wikipedia.org/wiki/Posterior_probability">The posterior probability</a></strong> 
+					is the probability of the parameters $\theta$  given the evidence $\mathbf{X}$: $p(\theta \mid \mathbf{X})$. 
+					It contrasts with the likelihood function, which is the probability of the evidence given the parameters: $p(\mathbf{X} \mid \theta)$.
+					The two are related as follows:
+					<br>Let us have a prior belief that the probability distribution function is $p(\theta)$ and observations $\mathbf{X}$ with the likelihood $p(\mathbf{X} \mid \theta)$, then the posterior probability is defined as
+					$$p(\theta \mid \mathbf{X}) = \frac {p(\mathbf{X} \mid \theta) p(\theta)}{p(\mathbf{X})}$$
+				</p>
+				<p>
+					In logistic regression cass, the logistic regression model is:
+					$$f(\mathbf{x}_i, y_i \mid \mathbf{w}) = \frac{1}{(1 + e^{-y_i \mathbf{w}^T \mathbf{x}_i})}$$
+				</p>
+				<p>
+					The prior probability is:
+					\begin{align}
+						p(\mathbf{w}) &\sim \mathcal{N}(0, \lambda^{-1})\\
+						&=\frac{1}{\sqrt{\frac{2\pi}{\lambda}}}e^{-\frac{\lambda(w - 0)^2}{2}}
+					\end{align}
+				</p>
+				<p>
+					The maximum maximum-a-posteriori is:
+					\begin{align}
+						P(\mathbf{w} \mid \mathbf{x}_i, y_i) &= \text{argmax }\frac{L(\mathbf{x}_i, y_i \mid \mathbf{w})p(\mathbf{w})}{p(\mathbf{x}_i, y_i)}\\
+						&= \text{argmax }L(\mathbf{x}_i, y_i \mid \mathbf{w})p(\mathbf{w})\\
+						&= \text{argmax log}L(\mathbf{x}_i, y_i \mid \mathbf{w}) + \text{log}p(\mathbf{w})\\
+						&=\text{argmax }\sum\text{log}(1 + e^{-y_i \mathbf{w}^T \mathbf{x}_i})^{-1} + \text{log}\frac{1}{\sqrt{\frac{2\pi}{\lambda}}}e^{-\frac{\lambda(w - 0)^2}{2}}\\
+						&=\text{argmax }-\sum\text{log}(1 + e^{-y_i \mathbf{w}^T \mathbf{x}_i}) - \frac{\lambda}{2}\mathbf{w}^T\mathbf{w}
+					\end{align}
+				</p>
+			</div>
+		</div>
 	</div>
 	<!-- end content -->
 	<!-- start sidebar -->
 	<div id="sidebar">
 		<ul>
 			<li>
-				<h2>Categories</h2>
+				<h2>Topics</h2>
 				<ul>
 					<li><a href="#" data-toggle=collapse data-target="#introduct">What's Logistic Regression (3)</a></a></li>
 					<div id=introduct class=collapse>

@@ -230,7 +230,7 @@
 			<h1 id="equation" class="title">Equation</h1>
 			<p class="byline"><small>Edited on July 9th, 2018 by <a target="_blank" rel="noopener noreferrer" href="http://github.com/Berchem">Berchem</a></small></p>
 			<div class="entry">
-				<p>Linear Algebra, a little Calculus, a little linear algebra</p>
+				<p>Define function for developing algorithm</p>
 				<div class=pseudo>
 					<div>
 						<span class=import>public class</span> <span class=class_color>core</span> {
@@ -302,6 +302,7 @@
 						<br>&nbsp; &nbsp; }</p>
 						<br>
 						<br>}
+						<br>
 					</div>								
 				</div>
 			</div>
@@ -373,10 +374,11 @@
 						<br>&nbsp; &nbsp; }</p>
 						<br>	
 						<br>}
+						<br>
 					</div>
 				</div>
 
-				<p>newton</p>
+				<p><strong>Newton's Method</strong></p>
 				<div class=pseudo>
 					<div>
 						<span class=import>class</span> <span class=class_color>newton</span> <span class=import>extends</span> <span class=class_color>LogisticRegression</span> {
@@ -441,7 +443,7 @@
 						<br>
 						<br>&nbsp; &nbsp; &nbsp; &nbsp; <span class=import>int times</span> = 0;
 						<br>
-						<br>&nbsp; &nbsp; &nbsp; &nbsp; <span class=import>double</span>[] <span class=import>a</span>> = <span class=import>new double</span>[<span class=v>n</span>];
+						<br>&nbsp; &nbsp; &nbsp; &nbsp; <span class=import>double</span>[] <span class=import>a</span> = <span class=import>new double</span>[<span class=v>n</span>];
 						<br>&nbsp; &nbsp; &nbsp; &nbsp; <span class=import>double</span>[][] <span class=import>lambda</span> = <span class=class_color>Matrix</span>.<span class=m>diagflat</span>(<span class=class_color>core</span>.<span class=m>ones</span>(<span class=v>n</span>, <span class=import>this</span>.<span class=number>lambda</span>));
 						<br>&nbsp; &nbsp; &nbsp; &nbsp; <span class=import>double</span>[][] <span class=import>A</span> = <span class=import>new double</span>[<span class=v>m</span>][<span class=v>m</span>];
 						<br>&nbsp; &nbsp; &nbsp; &nbsp; <span class=import>double</span>[] <span class=import>z</span> = <span class=import>new double</span>[<span class=v>n</span>];
@@ -492,7 +494,7 @@
 			<h1 id="io" class="title">Reading & Writing File</h1>
 			<p class="byline"><small>Edited on July 11th, 2018 by <a target="_blank" rel="noopener noreferrer" href="http://github.com/Berchem">Berchem</a></small></p>
 			<div class="entry">
-				<p>I/O</p>
+				<p>Using of String, Double, List, File, Scanner, Printer class for I/O</p>
 				<div class=pseudo>
 					<div>
 						<span class=import>import</span> java.io.File;
@@ -591,7 +593,7 @@
 			<h1 id="export" class="title">Export Runable .jar File</h1>
 			<p class="byline"><small>Edited on July 12th, 2018 by <a target="_blank" rel="noopener noreferrer" href="http://github.com/Berchem">Berchem</a></small></p>
 			<div class="entry">
-				<p>Linear Algebra, a little Calculus, a little linear algebra</p>
+				<p>Declare some variables</p>
 				<div class=pseudo>
 					<span class=import>class</span> <span class=class_color>content_variables</span>{
 					<br>&nbsp; &nbsp; <span class=shebang>// declare variables</span>
@@ -609,7 +611,7 @@
 					<br>}
 				</div>
 
-				<p>Linear Algebra, a little Calculus, a little linear algebra</p>
+				<p>Entry point</p>
 				<div class=pseudo>
 					<span class=import>import</span> java.io.FileNotFoundException;
 					<br><span class=import>import</span> java.io.UnsupportedEncodingException;
@@ -722,25 +724,70 @@
 			<h1 id="summary" class="title">Summary</h1>
 			<p class="byline"><small>Edited on July 16th, 2018 by <a target="_blank" rel="noopener noreferrer" href="http://github.com/Berchem">Berchem</a></small></p>
 			<div class="entry">
-				<p>Although it looks like there are not many technologies used in this project, but we just need to organize some basic program and both a little calculus and linear algebra. Then we can building an algorithm for logistic regression in java.</p>
-				<strong>Mathematics</strong>
-				<p>&nbsp; &nbsp; a little Calculus</p>
-				<p>&nbsp; &nbsp; a little linear algebra</p>
+				<p>&nbsp; &nbsp; Although this project looks complex, but there are not many technologies used in this project actually, we just need to organize some basic program and both a little calculus and linear algebra. Then we can building an algorithm for logistic regression in java.</p>
+				In <strong>Mathematics</strong>,
+				<p>&nbsp; &nbsp; we used a little Calculus, such as logarithmic differentiation: $(ln(f))^\prime = \frac{f^\prime}{f}$ </p>
+				<p>&nbsp; &nbsp; and a little linear algebra like <strong><a target="_blank" rel="noopener noreferrer" href="https://en.wikipedia.org/wiki/Matrix_multiplication#Definition">matrix multiplication</a></strong> and <strong><a target="_blank" rel="noopener noreferrer" href="http://mathworld.wolfram.com/MatrixInverse.html">inverse</a></strong>.</p>
 			
-				<strong>Java</strong>
-				<p>&nbsp; &nbsp; for,
-					<br>while,
-					<br>if... else...,
-					<br>swith... cass...,
-					<br>class: inheritance, access level,
-					<br>method: overload, recursion,
-					<br>String,
-					<br>Double,
-					<br>Array,
-					<br>List,
-					<br>File,
-					<br>Scanner,
-					<br>Printer
+				In <strong>Java</strong>,
+				<table style="float: none; margin-left: 16px; margin-top:8px">
+					<tr>
+						<th>statement</th>
+						<th>used in algorithm</th>
+					</tr>
+					<tr>
+						<td>for loop</td>
+						<td>matrix operations, reading file</td>
+					</tr>
+					<tr>
+						<td>while loop</td>
+						<td>iterating Newton step</td>
+					</tr>
+					<tr>
+						<td>if... else...</td>
+						<td>control flow</td>
+					</tr>
+					<tr>
+						<td>switch... cass...</td>
+						<td>for optional arguments design</td>
+					</tr>
+					<tr>
+						<td>class</td>
+						<td>inheritance, access level</td>
+					</tr>
+					<tr>
+						<td>method</td>
+						<td>overload, recursion</td>
+					</tr>
+					<tr>
+						<td>String</td>
+						<td>parsing string for reading file</td>
+					</tr>
+					<tr>
+						<td>Double</td>
+						<td>parsing double for reading file</td>
+					</tr>
+					<tr>
+						<td>Array</td>
+						<td>for matrix operations and reading file</td>
+					</tr>
+					<tr>
+						<td>List</td>
+						<td>for reading file</td>
+					</tr>
+					<tr>
+						<td>File</td>
+						<td>for reading file</td>
+					</tr>
+					<tr>
+						<td>Scanner</td>
+						<td>for reading file</td>
+					</tr>
+					<tr>
+						<td>Printer</td>
+						<td>for writing file</td>
+					</tr>
+				</table>
 				</p>
 			</div>
 		</div>
@@ -750,7 +797,7 @@
 	<div id="sidebar">
 		<ul>
 			<li>
-				<h2>Categories</h2>
+				<h2>Topics</h2>
 				<ul>
 					<li><a href="#" data-toggle=collapse data-target="#introduct">What's Logistic Regression (3)</a></a></li>
 					<div id=introduct class=collapse>
