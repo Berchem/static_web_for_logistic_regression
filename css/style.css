@@ -84,6 +84,55 @@ hr {
 	display: none;
 }
 
+/* Front Page header*/
+
+.s-header{
+	height:100%;
+	background: url(../images/img09-1.jpg);
+	font-family: Verdana, Geneva, Tahoma, sans-serif;
+}
+
+#header-logo{
+	margin: 50px;
+	margin-left: 33px;
+	height: 20px;
+	/* float: left; */
+	/* border: #419C20 solid 1px; */
+}
+
+#theme{
+	margin:	10px 80px;
+	float: right;
+	/* border: #1790c3 solid 1px; */
+}
+
+#saying{
+	/* margin-top: 200px; */
+	position: absolute;
+	right: 200px;
+	bottom: 30%;
+	float:right;
+	font-size: 20px;
+	/* border: #1790c3 solid 1px; */
+}
+
+#next{
+	position: absolute;
+	right: 200px;
+	bottom: 15%;
+	float:right;
+	font-size: 20px;
+	/* border: #1790c3 solid 1px; */
+}
+
+
+header h1{
+	font-family: Verdana, Geneva, Tahoma, sans-serif;
+	font-size: 70px;
+	color: #FFFFFF;
+	/* border: #1790c3 solid 1px; */
+}
+
 /* Header */
 
 #header {
