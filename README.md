@@ -21,7 +21,7 @@
 ### <a name=front>Front Page</a>
 <img src="screen/s01.png" style="width: 100%">
 
-### <a name=intro>ntroduction</a>
+### <a name=intro>Introduction</a>
 <img src="screen/s02.png" style="width: 100%">
 
 ### <a name=result>Result</a>
