@@ -18,7 +18,7 @@
 
 ## Preview
 
-### <a name=front>Front Page]</a>
+### <a name=front>Front Page</a>
 <img src="screen/s01.png" style="width: 100%">
 
 ### <a name=intro>ntroduction</a>
