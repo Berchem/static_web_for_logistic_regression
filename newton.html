@@ -147,6 +147,11 @@
 		  }
 		});
 	  </script>
+	
+	<!-- jsicons
+    ================================================== -->
+    <link rel="shortcut icon" href="images/github_logo.png" type="image/x-icon">
+    <link rel="icon" href="images/github_logo.png" type="image/x-icon">
 	<!-- <script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script> -->
 </head>
 
@@ -315,10 +320,12 @@
 					<button onclick="anim_newton.faster()">
 						<i class="fa fa-plus"></i>
 					</button>
-					<form action="#n" name="_anim_loop_select_newton" class="anim_control">
-						<input class=checkmark type="radio" name="state" value="once"> Once </input>
-						<input class=checkmark type="radio" name="state" value="loop" checked> Loop </input>
-						<input class=checkmark type="radio" name="state" value="reflect"> Reflect </input>
+					<form action="#n" name="_anim_loop_select_newton">
+						<div style="width:450px; margin-top: 10px;">
+						<input id=s1 type="radio" name="state" value="once"><label for="s1"><span></span>Once</label>
+						<input id=s2 type="radio" name="state" value="loop" checked><label for="s2"><span></span>Loop</label>
+						<input id=s3 type="radio" name="state" value="reflect"><label for="s3"><span></span>Reflect</label>
+						</div>
 					</form>
 				</div>
 

@@ -695,3 +695,30 @@ th, td{
 	font-family: consolas;
 	font-style: italic;
 }
+
+input[type="radio"] {
+    display:none;
+}
+
+input[type="radio"] + label {
+	float: left;
+	margin-left: 14%;
+    color:#f2f2f2;
+    font-family:Arial, sans-serif;
+}
+
+input[type="radio"] + label span {
+    display:inline-block;
+    width:19px;
+    height:19px;
+    margin:-2px 10px 0 0;
+    vertical-align:middle;
+	/* background:url(../images/check_radio_sheet.png) left top no-repeat; */
+	background:url(../images/check_radio_sheet.png) -38px top no-repeat;
+    cursor:pointer;
+}
+
+input[type="radio"]:checked + label span {
+	/* background:url(../images/check_radio_sheet.png) -19px top no-repeat; */
+    background:url(../images/check_radio_sheet.png) -57px top no-repeat;
+}

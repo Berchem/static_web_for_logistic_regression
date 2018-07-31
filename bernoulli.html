@@ -3,23 +3,13 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <meta http-equiv="content-type" content="text/html; charset=utf-8" />
-<title>Front Page</title>
+<title>Side Project</title>
 <meta name="keywords" content="" />
 <meta name="description" content="" />
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 <link href="css/style.css" rel="stylesheet" type="text/css" media="screen" />
-<script>
-		$(document).ready(function(){
-		
-			$("#next").click(function(){
-				$(".s-header").css("color", "white").slideUp(1200)
-		
-			});
-		
-		});
-</script>
 <script type="text/x-mathjax-config">
 	MathJax.Hub.Config({
 	  tex2jax: {
@@ -32,73 +22,33 @@
   <script type="text/javascript"
 	  src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
   </script>
-
-	<!-- jsicons
-    ================================================== -->
-    <link rel="shortcut icon" href="images/github_logo.png" type="image/x-icon">
-    <link rel="icon" href="images/github_logo.png" type="image/x-icon">
 </head>
+<body>
 
-<body style="overflow: hidden;">
-	
-  <!-- header
-    ================================================== -->
-    <header class="s-header">
-
-		<div id="header-logo">
-			<img href="FrontPage.html" src="images/eclipse.png" width="590px">
-		</div>
-
-		<div id="theme">
-			<h1>Building an Algorithm for <br>Logistic Regression in Java</h1>
-		</div>
-
-		<div id="saying">
-			<p>Infrastructure is much more important than architecture.</p>
-			<p align="right">— Rem Koolhaas</p>
-		</div>
-		
-		<div id="next">
-			<a href=#>STARTED</a>
-		</div>
-		
-		<div id="footer" style="position: absolute; bottom:0">
-			<p>&copy; 2018 All Rights Reserved &nbsp;&bull;&nbsp; Edited by <a target="_blank" rel="noopener noreferrer" href="http://github.com/Berchem">Berchem Lin</a>.</p>
-		</div>
-	</header> <!-- end s-header -->
-	
-
-
-	
 <!-- start header -->
 <div id="header">
-	<a href="FrontPage.html"><h1>Logistic Regression</h1></a>
+	<h1>Logistic Regression</h1>
 </div>
 <!-- end header -->
 <!-- start page -->
 <div id="page">
 	<!-- start content -->
 	<div id="content">
-		<div class="post" id=intro>
-			<h2 class="title">Introduction</h2>
-			<p class="byline"><small>Retrieved via <a target="_blank" rel="noopener noreferrer" href="https://en.wikipedia.org/">wiki</a> | <a target="_blank" rel="noopener noreferrer" href="http://scikit-learn.org/stable/modules/generated/sklearn.linear_model.LogisticRegression.html">scikit-learn</a> July 3rd, 2018</small></p>
-			<img id=sigmoid src="images/sigmoid_function.png">
+		<div class="post">
+			<h1 class="title">Bernoulli Distribution</h1>
+			<p class="byline"><small>Retrieved via <a target="_blank" rel="noopener noreferrer" href="https://en.wikipedia.org/">wiki</a> on July 7th 2018</small></p>
 			<div class="entry">
-				<p>&nbsp; &nbsp; In statistics, the <strong><a target="_blank" rel="noopener noreferrer" href="https://en.wikipedia.org/wiki/Logistic_function">Logistic Model</a></strong> is a statistical model that is usually taken to apply to a binary dependent variable. In regression analysis, <strong><a target="_blank" rel="noopener noreferrer" href="https://en.wikipedia.org/wiki/Logistic_regression">Logistic Regression</a></strong> is estimating the parameters of a logistic model. </p>
-				<p>&nbsp; &nbsp; More formally, a logistic model is one where the <a href="#log-odds"><strong>log-odds</strong></a> of the probability of an event is a linear combination of independent or predictor variables. The two possible dependent variable values are often labelled as "1" and "0", which represent outcomes such as pass/fail, win/lose, alive/dead or healthy/sick ... whatever. </p>
-				<p>&nbsp; &nbsp; The binary logistic regression model can be generalized to more than two levels of the dependent variable: categorical outputs with more than two values are modelled by multinomial logistic regression, and if the multiple categories are ordered, by ordinal logistic regression, for example the proportional <a href=#odds><strong>odds</strong></a> ordinal logistic model.</p>
+				<p>&nbsp; &nbsp; In statistics,
+
+				</p>
 			</div>
 			
 		</div>
-		<div class="post" id=definition>
+		<div class="post">
 			<h2 class="title">Definition of the logistic function</h2>
 			<p class="byline"><small>Retrieved via <a target="_blank" rel="noopener noreferrer" href="https://en.wikipedia.org/">wiki</a> July 3rd, 2018</small></p>
 			<div class="entry">
-				<p>&nbsp; &nbsp; An explanation of logistic regression can begin with an explanation of the standard logistic function. 
-					The logistic function is a sigmoid function, which takes any real input $t$, ($t\in ℝ$), 
-					and outputs a value between zero and one; for the logistic function, this is interpreted as taking input 
-					<a id=log-odds target="_blank" rel="noopener noreferrer" href="https://en.wikipedia.org/wiki/Logit">log-odds</a> and having output probability. 
-					The logistic function $\sigma(t)$ is defined as follows:
+				<p>&nbsp; &nbsp; An explanation of logistic regression
 					$$\sigma(t)=\frac{e^t}{e^t+1}=\frac{1}{1+e^{-t}}$$
 				</p>
 						
@@ -114,8 +64,8 @@
 				
 			</div>
 		</div>
-		<div class="post" id=odds>
-			<h2 class="title">Definition of the odds</h2>
+		<div class="post">
+			<h2 class="title" id=odds>Definition of the odds</h2>
 			<p class="byline"><small>Retrieved via <a target="_blank" rel="noopener noreferrer" href="https://en.wikipedia.org/">wiki</a> July 3rd, 2018</small></p>
 			<div class="entry">
 				<p>&nbsp; &nbsp; The odds of the dependent variable equaling a case (given some linear combination $x$ of the predictors) 
@@ -140,23 +90,23 @@
 	<div id="sidebar">
 		<ul>
 			<li>
-				<h2>Topics</h2>
+				<h2>Categories</h2>
 				<ul>
-					<li><a href="#" data-toggle=collapse data-target="#introduct">What's Logistic Regression (3)</a></a></li>
+					<li><a href="introduction.html">What's Logistic Regression</a> <a href="#" data-toggle=collapse data-target="#introduct">(3)</a></a></li>
 					<div id=introduct class=collapse>
 						<li><a href="introduction.html#intro">&nbsp; &nbsp; &nbsp; &nbsp; Introduction</a></li>
 						<li><a href="introduction.html#definition">&nbsp; &nbsp; &nbsp; &nbsp; Definition of the logistic function</a></li>
 						<li><a href="introduction.html#odds">&nbsp; &nbsp; &nbsp; &nbsp; Definition of the odds</a></li>
 					</div>		
 		
-					<li><a href="#" data-toggle=collapse data-target="#result">Java Result versus Scikit-learn (3)</a></li>
+					<li><a href="result.html">Java Result versus Scikit-learn <a href="#" data-toggle=collapse data-target="#result">(3)</a></li>
 					<div id=result class=collapse>
 						<li><a href="result.html#bridge">&nbsp; &nbsp; &nbsp; &nbsp; Bridge to Java</a></li>
 						<li><a href="result.html#titanic">&nbsp; &nbsp; &nbsp; &nbsp; Test Data - titanic</a></li>
 						<li><a href="result.html#binary">&nbsp; &nbsp; &nbsp; &nbsp; Test Data - binary</a></li>
 					</div>
 				
-					<li><a href="#" data-toggle=collapse data-target="#alg">Algorithm for Logistic Regression (3)</a></li>
+					<li><a href="jupyter-notebook.html">Algorithm for Logistic Regression</a> <a href="#" data-toggle=collapse data-target="#alg">(3)</a></li>
 					<div id="alg" class=collapse>
 						<li><a href="jupyter-notebook.html#sigm">&nbsp; &nbsp; &nbsp; &nbsp; Sigmoid Function</a></li>
 						<li><a href="jupyter-notebook.html#prior">&nbsp; &nbsp; &nbsp; &nbsp; Likelihood & Prior Function</a></li>
@@ -165,7 +115,7 @@
 				
 					<li><a href="class_diagram_current.html">Class Diagram</a></li>
 									
-					<li><a href="#" data-toggle=collapse data-target="#tech">Technique for Building Algorithm (6)</a></li>
+					<li><a href="technique.html">Technique for Building Algorithm</a> <a href="#" data-toggle=collapse data-target="#tech">(6)</a></li>
 					<div id=tech class=collapse>
 						<li><a href="technique.html#matrix">&nbsp; &nbsp; &nbsp; &nbsp; Matrix</a></li>
 						<li><a href="technique.html#equation">&nbsp; &nbsp; &nbsp; &nbsp; Equation</a></li>
@@ -180,13 +130,13 @@
 				<h2>Appendix</h2>
 				<ul>
 					<li><a href="logistic.html">Logistic Regression</a></li>
-					<li><a href="#" data-toggle="collapse" data-target="#map">Maximum-a-Posteriori (3)</a></li>
+					<li><a href="map.html">Maximum-a-Posteriori</a> <a href="#" data-toggle="collapse" data-target="#map">(2)</a></li>
 					<div id="map" class=collapse>
 						<li><a href="map.html#likelihood">&nbsp; &nbsp; &nbsp; &nbsp; Maximum Likelihood Estimation</a></li>
 						<li><a href="map.html#bayes">&nbsp; &nbsp; &nbsp; &nbsp; Bayes’ theorem</a></li>
-						<li><a href="map.html#posteriori">&nbsp; &nbsp; &nbsp; &nbsp; Posterior Probability</a></li>
 					</div>
 					<li><a href="newton.html">Newton's Method</a></li>
+					<li><a href="bernoulli.html">Bernoulli Distribution</a></li>
 				</ul>
 			</li>
 		</ul>
@@ -200,5 +150,4 @@
 </div>
 </body>
 <script src='https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.4/latest.js?config=TeX-MML-AM_CHTML' async></script>
-<script>$("#introduct").collapse("show")</script>
 </html>
